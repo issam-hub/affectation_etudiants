@@ -1,85 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>projet</title>
-    <link rel="stylesheet" href="form.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
 
-  <body>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>projet</title>
+    <link rel="stylesheet" href="form.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
     <div class="header">
-      <img src="./imgs/logo.svg" alt="logo" />
+        <img src="./imgs/logo.svg" alt="logo">
     </div>
 
     <div class="div1">
-      <div class="title">
-        <h1>fill</h1>
-        <p>fill out your informations</p>
-      </div>
-      <form action="data_handling.php" method="get">
-        <div class="info">
-          <label>Matricule: </label>
-          <input
-            placeholder="1234578901"
-            type="text"
-            name="matricule"
-            id="z"
-            pattern="[0-9]{11}"
-            required
-          />
+        <div class="title">
+            <h1>fill</h1>
+            <p>fill out your informations</p>
         </div>
-        <div class="info">
-          <label>Code:</label>
-          <input
-            placeholder="e_jkZe23"
-            type="text"
-            name="code"
-            id="c"
-            pattern="\w{8}"
-            required
-          />
-        </div>
-        <div class="seperator">🔷</div>
-        <div class="choixs">
-          <div class="choix">
-            <label>GL</label>
-            <select name="gl_choix" class="first" required>
-              <option value="" selected disabled hidden></option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-            </select>
-          </div>
-          <div class="choix" style="margin-inline: 20px 20px">
-            <label>GI</label>
-            <select name="gi_choix" class="second" required>
-              <option value="" selected disabled hidden></option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-            </select>
-          </div>
-          <div class="choix">
-            <label>RI</label>
-            <select name="rt_choix" class="third" required>
-              <option value="" selected disabled hidden></option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-            </select>
-          </div>
-        </div>
-        <button type="submit">submit</button>
-      </form>
+        <form action="data_handling.php" method="get">
+            <div class="info">
+                <label>Nom: </label>
+                <input placeholder="john" autocomplete="off" type="text" name="nom" id="x" pattern="[a-zA-Z]+" required>
+            </div>
+            <div class="info">
+                <label>Prenom: </label>
+                <input placeholder="doe" autocomplete="off" type="text" name="prenom" id="y" pattern="[a-zA-Z]+"
+                    required>
+            </div>
+            <div class="info">
+                <label>Matricule: </label>
+                <input placeholder="1234578901" autocomplete="off" type="text" name="matricule" id="z"
+                    pattern="[0-9]{11}" required>
+            </div>
+            <div class="info">
+                <label>Moyenne:</label>
+                <input placeholder="10.00" autocomplete="off" type="text" name="moyene" id="s"
+                    pattern="[0-9]{2}(,||.)[0-9]{2}" required>
+            </div>
+            <div class="info">
+                <label>Code:</label>
+                <input placeholder="e_jkZe23" autocomplete="off" type="text" name="code" id="c" pattern="\w{8}"
+                    required>
+            </div>
+            <div class="seperator">🔷</div>
+            <div class="choixs">
+                <div class="choix">
+                    <label>GL</label>
+                    <select name="gl_choix" class="first" required>
+                        <option value="" selected disabled hidden></option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
+                <div class="choix" style="margin-inline: 20px 20px;">
+                    <label>GI</label>
+                    <select name="gi_choix" class="second" required>
+                        <option value="" selected disabled hidden></option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
+                <div class="choix">
+                    <label>RI</label>
+                    <select name="rt_choix" class="third" required>
+                        <option value="" selected disabled hidden></option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit">submit</button>
+        </form>
     </div>
     <script src="code.js"></script>
-  </body>
+</body>
+
 </html>
