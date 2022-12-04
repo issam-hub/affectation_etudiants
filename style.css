@@ -185,12 +185,12 @@ html {
 .uuu1 {
    position: absolute;
    top: 28%;
-   left: 15%;
+   left: 24%;
    color: #aaa7a7;
 }
 .choix2 {
    position: absolute;
-   top: 90.4%;
+   top: 85%;
    left: 65%;
    transform: translate(-50%, -50%);
 }
@@ -211,15 +211,33 @@ html {
 .uuu2 {
    position: absolute;
    top: 28%;
-   left: 24%;
+   left: 13%;
    color: rgb(190, 189, 189);
 }
 
-.c22 img {
+/* .c22 img {
    translate: 4px;
 }
 .exel {
    transform: translate(155%, 30%);
+} */
+
+.c22 {
+   position: absolute;
+   background-color: #ffffff;
+   top: 80%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   border: 3px solid #ffffff;
+   letter-spacing: 3px;
+   cursor: pointer;
+   border-radius: 20px;
+   padding: 3px 45px;
+}
+.c22 img {
+   height: 35px;
+   width: 35px;
+   /* translate: -60% 5px; */
 }
 
 .footer {
