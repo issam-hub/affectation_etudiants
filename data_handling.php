@@ -15,7 +15,7 @@ const START = 15;
 
 /**
  reference cells:
- * (matricule, nom_prenom, mgc, ordre_gl, ordre_gi, ordre_rt, choisit) E15, B15, Q15, R15, S15, T15, U15
+ * (matricule, nom_prenom, mgc, ordre_gl, ordre_gi, ordre_rt, choisit, mot_de_passe) E15, B15, Q15, R15, S15, T15, U15, V15
  */
 
 
@@ -23,7 +23,7 @@ if (isset($_GET["file"])) {
     $file = fopen($_GET["file"], "r");
 
     $keys = [];
-    for ($i = "A"; $i <= "U"; $i++) {
+    for ($i = "A"; $i <= "V"; $i++) {
         array_push($keys, $i);
     }
 
@@ -43,10 +43,10 @@ if (isset($_GET["file"])) {
             $data_table_row["T"],
             "DEFAULT",
             "DEFAULT",
-            "'" . $data_table_row["U"] . "'"
+            "'" . $data_table_row["U"] . "'",
+            "'" . $data_table_row["V"] . "'",
         ]);
     }
-    header("Location:sad.html");
 }
 /*----------------End Load Data From CSV File--------------*/
 
@@ -74,7 +74,6 @@ if (
             1
         ]
     ];
-    header("Location:sad.html");
 }
 
 /*----------------End Load Data From Interface--------------*/
