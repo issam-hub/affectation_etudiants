@@ -1,0 +1,134 @@
+/* start general rules */
+body {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-family: "Lato", sans-serif;
+}
+html {
+   scroll-behavior: smooth;
+}
+/* end general rules */
+
+/* start header */
+.header {
+   /* padding-top & padding-bottom */
+   padding-block: 10px;
+   background-color: #171738;
+   text-align: center;
+}
+.header img {
+   height: 50px;
+   width: 50px;
+   
+}
+
+
+.text {
+   text-align: center;
+   translate: 0 -50%;
+   position: relative;
+   top: 50px;
+}
+
+ h1 {
+   color: #171738;
+   font-size: 3rem; /* 48px */
+   
+}
+.text p {
+   font-style: italic;
+   font-size: 1.1rem; /* 17.6px */
+  ;
+}
+
+.tab{
+   padding: 1px;
+   width: 850px;
+   position: relative;
+   margin: 25px 100px;
+   left: 150px;
+   
+}
+th{
+   width: 850px;
+    border-bottom: 2px solid #2E1760;
+   border-top: 2px solid #2E1760;
+   border-right: 2px solid #171738;
+   border-left: 2px solid #171738; 
+   text-align: center;
+   background-color: #2E1760;
+   font-style: italic;
+   
+
+   
+   
+}
+td{
+   width: 850px;
+    border-bottom: 2px solid #DFF3E4;
+   border-right: 2px solid rgb(180, 173, 173);
+   border-left: 2px solid rgb(180, 173, 173); 
+   text-align: center;
+   padding-top: 7px;
+   padding-bottom: 7px;
+}
+td:hover{
+   background-color:rgb(231, 219, 219);  ;
+}
+
+/* end header */
+
+/* .landing {
+   height: calc(100vh - 73px);
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   background-image: url("./imgs/bg.jpg");
+   background-size: cover;
+   position: relative;
+}
+
+.landing .text {
+   text-align: center;
+   translate: 0 -50%;
+}
+.landing::before {
+   content: "";
+   width: 100%;
+   height: 100%;
+   background-color: rgb(23 23 56 / 90%);
+   position: absolute;
+   top: 0;
+   left: 0;
+}
+.landing h1,
+.landing p {
+   position: relative;
+}
+.landing h1 {
+   color: white;
+   font-size: 3rem; /* 48px */
+   /* letter-spacing: 2px;
+}
+.landing p {
+   font-style: italic;
+   font-size: 1.1rem; /* 17.6px */
+/*   color: rgb(217, 217, 217);
+}
+.landing img {
+   position: relative;
+   cursor: pointer;
+   animation: bounce 0.5s infinite both alternate;
+} */
+/* animation ldak el sahm */
+/*@keyframes bounce {
+   0% {
+      translate: 0 -20%;
+   }
+   100% {
+      translate: 0 0;
+   }
+} 
+*/
