@@ -150,3 +150,40 @@ form select:focus {
    display: flex;
    flex-direction: column;
 }
+
+.popUp {
+   display: none;
+   z-index: 100;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   translate: -50% -50%;
+   height: 300px;
+   width: 500px;
+   background-color: #171738;
+   border-radius: 15px;
+   box-shadow: 0 0 0 1000px rgba(25, 25, 25, 0.529);
+}
+
+.popUp .exit {
+   width: 100%;
+   border-bottom: 1px solid rgb(58, 1, 98);
+   text-align: end;
+}
+.exit img {
+   height: 40px;
+   width: 40px;
+   cursor: pointer;
+}
+.popUp .ctnt {
+   position: relative;
+   height: calc(100% - 100px);
+}
+.popUp .ctnt p {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   translate: -50% -50%;
+   color: white;
+   font-size: 1.2rem;
+}
