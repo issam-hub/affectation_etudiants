@@ -50,34 +50,6 @@ if (isset($_GET["file"])) {
 }
 /*----------------End Load Data From CSV File--------------*/
 
-/*----------------Start Load Data From Interface--------------*/
-
-if (
-    isset($_GET["nom"]) && !empty($_GET["nom"]) &&
-    isset($_GET["prenom"]) && !empty($_GET["prenom"]) &&
-    isset($_GET["matricule"]) && !empty($_GET["matricule"]) &&
-    isset($_GET["moyene"]) && !empty($_GET["moyene"]) &&
-    isset($_GET["gl_choix"]) && !empty($_GET["gl_choix"]) &&
-    isset($_GET["gi_choix"]) && !empty($_GET["gi_choix"]) &&
-    isset($_GET["rt_choix"]) && !empty($_GET["rt_choix"])
-) {
-    $statementsValues = [
-        [
-            "'" . $_GET["matricule"] . "'",
-            "'" . $_GET["nom"] . " " . $_GET["prenom"] . "'",
-            $_GET["moyene"],
-            $_GET["gl_choix"],
-            $_GET["gi_choix"],
-            $_GET["rt_choix"],
-            "DEFAULT",
-            "DEFAULT",
-            1
-        ]
-    ];
-}
-
-/*----------------End Load Data From Interface--------------*/
-
 /*----------------Start Connection to DB--------------*/
 const HOSTNAME = "localhost";
 const USERNAME = "root";
@@ -102,7 +74,47 @@ try {
 }
 /*----------------End Connection to DB--------------*/
 
+/*----------------Start Load Choice From Interface--------------*/
 
+if (
+    isset($_GET["matricule"]) && !empty($_GET["matricule"]) &&
+    isset($_GET["gl_choix"]) && !empty($_GET["gl_choix"]) &&
+    isset($_GET["gi_choix"]) && !empty($_GET["gi_choix"]) &&
+    isset($_GET["rt_choix"]) && !empty($_GET["rt_choix"]) &&
+    isset($_GET["code"]) && !empty($_GET["code"])
+) {
+    $matricule = $_GET['matricule'];
+    $code = $_GET["code"];
+
+    $res = $db->query("SELECT matricule FROM " . TABLE_NAME . " WHERE matricule='$matricule'");
+    $user_found = $res->fetch_assoc();
+
+    if (!$user_found) {
+        die("wrong credentials, verify username or password");
+    } else {
+        $res = $db->query("SELECT mot_de_passe FROM " . TABLE_NAME . " WHERE matricule='$matricule'");
+        $right_code = $res->fetch_assoc()["mot_de_passe"];
+        if ($code != $right_code) {
+            die("wrong credentials, verify username or password");
+        }
+    }
+
+    $res = $db->query("SELECT choisit FROM " . TABLE_NAME . " WHERE matricule='$matricule'");
+    $choisit = $res->fetch_assoc()["choisit"];
+
+    if ($choisit) {
+        die("you've already chosen");
+    } else {
+        $gl_choix = $_GET["gl_choix"];
+        $gi_choix = $_GET["gi_choix"];
+        $rt_choix = $_GET["rt_choix"];
+        $db->query("UPDATE " . TABLE_NAME . " SET ordre_gl=$gl_choix, ordre_gi=$gi_choix, ordre_rt=$rt_choix WHERE matricule='$matricule'");
+        $db->query("UPDATE " . TABLE_NAME . " SET choisit=1 WHERE matricule='$matricule'");
+        die("your choices were submitted with success");
+    }
+}
+
+/*----------------End Load Choice From Interface--------------*/
 
 /*----------------Start Send enrolled in speciality students --------------*/
 if (isset($_GET["num_ins"])) {
@@ -202,7 +214,6 @@ if (
             $index++;
         }
     }
-    header("Location: statique.html");
 }
 
 
