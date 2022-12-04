@@ -3,6 +3,7 @@ body {
    padding: 0;
    box-sizing: border-box;
    font-family: "Lato", sans-serif;
+   background-color: #dff3e4;
 }
 html {
    scroll-behavior: smooth;
@@ -40,7 +41,9 @@ html {
 }
 
 form {
-   background-color: #2e1760;
+   outline: 4px solid #2e1760;
+   outline-style: dashed;
+   background-color: #5e3fa1;
    text-align: center;
    height: 40vh;
    width: 400px;
@@ -90,7 +93,7 @@ form button {
    border-radius: 30px;
    font-weight: bold;
    color: white;
-   background-color: #171738;
+   background-color: #161656;
    border: none;
    cursor: pointer;
    font-family: "Lato", sans-serif;
