@@ -1,41 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./agentAuth.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./agentAuth.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-        rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
     <title>Authentification</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="header">
-        <img src="./imgs/logo.svg" alt="logo" />
+      <img src="./imgs/logo.svg" alt="logo" />
     </div>
 
     <div class="div1">
-        <div class="title">
-            <h1>Authentification</h1>
-            <p>fill out your informations</p>
+      <div class="title">
+        <h1>Authentification</h1>
+        <p>fill out your informations</p>
+      </div>
+      <form action="data_handling.php" method="get">
+        <div class="info">
+          <label>Username: </label>
+          <input
+            placeholder="admin"
+            type="text"
+            name="agent_name"
+            id="agent_name"
+            pattern="[a-zA-Z]+"
+            required
+          />
         </div>
-        <form action="data_handling.php" method="get">
-            <div class="info">
-                <label>Username: </label>
-                <input placeholder="flan el folani" type="text" name="agent_name" id="z" pattern="[a-zA-Z]{11}"
-                    required />
-            </div>
-            <div class="info">
-                <label>Code:</label>
-                <input placeholder="e_jkZe23" type="text" name="agent_code" id="c" pattern="\w{8}" required />
-            </div>
-            <button type="submit">submit</button>
-        </form>
+        <div class="info">
+          <label>Code:</label>
+          <input
+            placeholder="admin"
+            type="text"
+            name="agent_code"
+            id="agent_code"
+            required
+          />
+        </div>
+        <button type="submit">submit</button>
+      </form>
     </div>
-</body>
-
+  </body>
 </html>
