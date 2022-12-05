@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Choices</title>
+    <link rel="stylesheet" href="./agentChoices.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        .filechoose {
+            position: relative;
+            top: 25%;
+            left: 50%;
+            z-index: 10;
+            text-align: center;
+            width: fit-content;
+        }
+
+        input {
+            display: none;
+        }
+
+        label {
+            padding: 12px 53px;
+            cursor: pointer;
+            border-radius: 50px;
+            /* width: 100%; */
+            background-color: white;
+            display: grid;
+            place-items: center;
+            position: absolute;
+            top: 72%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #imageName {
+            color: #171738;
+            font-weight: bold;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <img src="./imgs/logo.svg" alt="logo" />
+    </div>
+    <div class="title">
+        <h1>choices</h1>
+        <p>choose what your next action</p>
+    </div>
+    <div class="container">
+        <div class="box">
+            <h1>file</h1>
+            <p>enter a CSV file of students</p>
+            <div class="filechoose">
+                <label for="inputTag">
+                    <img src="./imgs/excel.svg" alt="agent">
+                </label>
+                <form action="./data_handling.php">
+                    <input id="inputTag" type="file" accept=".csv" name="file" />
+                    <br />
+                </form>
+            </div>
+        </div>
+        <div class="box">
+            <h1>review</h1>
+            <p>here's some stats about students</p>
+            <a href="sad.html"><img src="imgs/bilanIcon.png" alt=""></a>
+        </div>
+        <div class="box">
+            <h1>result</h1>
+            <p>check the final results</p>
+            <a href="Statique.html"><img src="imgs/checkmark.png" alt=""></a>
+        </div>
+    </div>
+    <script>
+        let input = document.getElementById("inputTag");
+        let imageName = document.getElementById("imageName")
+        let form = document.querySelector("form");
+
+        input.addEventListener("change", () => {
+            let inputImage = document.querySelector("input[type=file]").files[0];
+            form.submit();
+        })
+    </script>
+</body>
+
+</html>

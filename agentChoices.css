@@ -1,0 +1,104 @@
+body {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-family: "Lato", sans-serif;
+}
+html {
+   scroll-behavior: smooth;
+}
+/* end general rules */
+
+/* start header */
+.header {
+   /* padding-top & padding-bottom */
+   padding-block: 10px;
+   background-color: #171738;
+   text-align: center;
+}
+.header img {
+   height: 50px;
+   width: 50px;
+   cursor: pointer;
+}
+.title {
+   text-align: center;
+   margin-block: 40px 50px;
+}
+
+.title h1 {
+   font-size: 2.4rem;
+}
+.title p {
+   font-style: italic;
+   color: #aaa7a7;
+}
+
+.container {
+   margin-inline: auto;
+   display: flex;
+   width: 1000px;
+   flex-wrap: wrap;
+   justify-content: space-between;
+   align-items: center;
+   height: fit-content;
+}
+
+.container .box {
+   height: 300px;
+   width: 300px;
+   background-color: white;
+   position: relative;
+   background-size: cover;
+   text-align: center;
+   border-radius: 10px;
+}
+
+.box h1,
+.box p {
+   position: relative;
+   z-index: 10;
+}
+.box h1 {
+   color: white;
+}
+.box p {
+   color: rgb(216, 216, 216);
+   font-style: italic;
+}
+
+.container .box::after {
+   content: "";
+   position: absolute;
+   top: 0;
+   left: 0;
+   height: 100%;
+   width: 100%;
+   background-color: rgb(46 23 96 / 80%);
+   /* background-color: rgb(223 243 228 / 70%); */
+   border-radius: 10px;
+}
+.container .box:first-child {
+   background-image: url("./imgs/csv.jpg");
+}
+.container .box:nth-child(2) {
+   background-image: url("./imgs/bilan.jpg");
+}
+.container .box:nth-child(3) {
+   background-image: url("./imgs/resultat.jpg");
+}
+
+.box a {
+   padding: 10px 53px;
+   cursor: pointer;
+   border-radius: 50px;
+   background-color: white;
+   display: grid;
+   place-items: center;
+   width: fit-content;
+   position: relative;
+   top: 21%;
+   left: 50%;
+   translate: -50%;
+   z-index: 10;
+}
