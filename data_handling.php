@@ -6,6 +6,13 @@ spl_autoload_register(function () {
     require_once "classes.php";
 });
 
+session_start();
+const ACCOUNT_ERR_MSG = "wrong credentials, verify username or password";
+
+if (!isset($_SESSION["agent_connected"])) {
+    header("Location: agentAuth.html");
+    exit();
+}
 
 $statementsValues = [];
 
@@ -50,71 +57,15 @@ if (isset($_GET["file"])) {
 }
 /*----------------End Load Data From CSV File--------------*/
 
-/*----------------Start Connection to DB--------------*/
-const HOSTNAME = "localhost";
-const USERNAME = "root";
-const PASSWORD = "";
-const DB_NAME = "affectation_etudiants";
+
+/*----------------Start Load Data to Database--------------*/
+require_once("db_connection.php");
 const TABLE_NAME = "etudiant";
 
-$db = new mysqli(HOSTNAME, USERNAME, PASSWORD, DB_NAME);
+$record = new Record($db, TABLE_NAME);
+$record->add_multi_records($statementsValues);
+/*----------------End Load Data to Database--------------*/
 
-try {
-    if ($db->connect_error) {
-        throw new mysqli_sql_exception();
-    }
-    /*----------------Start Load Data to Database--------------*/
-
-    $record = new Record($db, TABLE_NAME);
-    $record->add_multi_records($statementsValues);
-
-    /*----------------End Load Data to Database--------------*/
-} catch (mysqli_sql_exception $e) {
-    echo $e->getMessage();
-}
-/*----------------End Connection to DB--------------*/
-
-/*----------------Start Load Choice From Interface--------------*/
-
-if (
-    isset($_GET["matricule"]) && !empty($_GET["matricule"]) &&
-    isset($_GET["gl_choix"]) && !empty($_GET["gl_choix"]) &&
-    isset($_GET["gi_choix"]) && !empty($_GET["gi_choix"]) &&
-    isset($_GET["rt_choix"]) && !empty($_GET["rt_choix"]) &&
-    isset($_GET["code"]) && !empty($_GET["code"])
-) {
-    $matricule = $_GET['matricule'];
-    $code = $_GET["code"];
-
-    $res = $db->query("SELECT matricule FROM " . TABLE_NAME . " WHERE matricule='$matricule' 
-    AND mot_de_passe='$code'");
-    $user_found = $res->fetch_assoc();
-
-    if (!$user_found) {
-        die("wrong credentials, verify username or password");
-    }
-
-    $res = $db->query("SELECT choisit FROM " . TABLE_NAME . " WHERE matricule='$matricule'");
-    $choisit = $res->fetch_assoc()["choisit"];
-
-    if ($choisit) {
-        die("you've already chosen");
-    } else {
-        $gl_choix = $_GET["gl_choix"];
-        $gi_choix = $_GET["gi_choix"];
-        $rt_choix = $_GET["rt_choix"];
-        $db->query("UPDATE " . TABLE_NAME . " SET ordre_gl=$gl_choix, ordre_gi=$gi_choix, ordre_rt=$rt_choix WHERE matricule='$matricule'");
-        $db->query("UPDATE " . TABLE_NAME . " SET choisit=1 WHERE matricule='$matricule'");
-        die("your choices were submitted with success");
-    }
-}
-/*----------------End Load Choice From Interface--------------*/
-
-/*----------------Start Agent Session--------------*/
-
-
-
-/*----------------End Agent Session--------------*/
 
 /*----------------Start Send enrolled in speciality students --------------*/
 if (isset($_GET["num_ins"])) {
@@ -129,6 +80,7 @@ if (isset($_GET["num_ins"])) {
         "num_ins_specialite" => $num_ins_specialite
     ];
     echo json_encode($infos);
+    exit();
 }
 /*----------------End Send enrolled in speciality students --------------*/
 
@@ -214,8 +166,8 @@ if (
             $index++;
         }
     }
+    exit();
 }
-
 
 if (isset($_GET["ordre_gl"])) {
     foreach ($specs["ordre_gl"] as $key => $student) {
@@ -223,6 +175,7 @@ if (isset($_GET["ordre_gl"])) {
         $specs["ordre_gl"][$key] = $student;
     }
     echo json_encode($specs["ordre_gl"]);
+    exit();
 }
 
 if (isset($_GET["ordre_gi"])) {
@@ -231,6 +184,7 @@ if (isset($_GET["ordre_gi"])) {
         $specs["ordre_gi"][$key] = $student;
     }
     echo json_encode($specs["ordre_gi"]);
+    exit();
 }
 
 if (isset($_GET["ordre_rt"])) {
@@ -239,6 +193,7 @@ if (isset($_GET["ordre_rt"])) {
         $specs["ordre_rt"][$key] = $student;
     }
     echo json_encode($specs["ordre_rt"]);
+    exit();
 }
 
 /*----------------End Affectation Handling--------------*/
@@ -273,6 +228,7 @@ if (isset($_GET["stats"])) {
     }
 
     echo json_encode($final);
+    exit();
 }
 
 /*----------------End Send statistics --------------*/
