@@ -86,17 +86,12 @@ if (
     $matricule = $_GET['matricule'];
     $code = $_GET["code"];
 
-    $res = $db->query("SELECT matricule FROM " . TABLE_NAME . " WHERE matricule='$matricule'");
+    $res = $db->query("SELECT matricule FROM " . TABLE_NAME . " WHERE matricule='$matricule' 
+    AND mot_de_passe='$code'");
     $user_found = $res->fetch_assoc();
 
     if (!$user_found) {
         die("wrong credentials, verify username or password");
-    } else {
-        $res = $db->query("SELECT mot_de_passe FROM " . TABLE_NAME . " WHERE matricule='$matricule'");
-        $right_code = $res->fetch_assoc()["mot_de_passe"];
-        if ($code != $right_code) {
-            die("wrong credentials, verify username or password");
-        }
     }
 
     $res = $db->query("SELECT choisit FROM " . TABLE_NAME . " WHERE matricule='$matricule'");
