@@ -177,7 +177,7 @@ form select:focus {
 
 .popUp .exit {
    width: 100%;
-   border-bottom: 1px solid rgb(58, 1, 98);
+   border-bottom: 1px solid rgb(127 102 145);
    text-align: end;
 }
 .exit img {
@@ -197,4 +197,5 @@ form select:focus {
    color: white;
    font-size: 1.2rem;
    text-align: center;
+   line-height: 1.5;
 }
