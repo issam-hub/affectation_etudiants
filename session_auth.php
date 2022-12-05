@@ -21,7 +21,7 @@ if (
 
     session_start();
     $_SESSION['agent_connected'] = "YES";
-    echo "connected with success";
+    header("Location: agentChoices.html");
 }
 
 /*----------------End Agent Session--------------*/
