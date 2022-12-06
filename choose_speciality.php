@@ -13,8 +13,7 @@ if (
     $matricule = $_GET['matricule'];
     $code = $_GET["code"];
 
-    $res = $db->query("SELECT matricule FROM " . TABLE_NAME . " WHERE matricule='$matricule' 
-    AND mot_de_passe='$code'");
+    $res = $db->query("SELECT matricule FROM " . TABLE_NAME . " WHERE matricule='$matricule' AND mot_de_passe='$code'");
     $user_found = $res->fetch_assoc();
 
     if (!$user_found) {

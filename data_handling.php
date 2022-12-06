@@ -14,7 +14,7 @@ if (!isset($_SESSION["agent_connected"])) {
     exit();
 }
 
-header("expires: " + 0);
+header("expires: " . 0);
 header("cache-control: no-cache, must-revalidate");
 
 $statementsValues = [];
