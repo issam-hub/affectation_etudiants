@@ -5,7 +5,8 @@ const ACCOUNT_ERR_MSG = "NOT_CONNECTED";
 
 session_start();
 if (isset($_SESSION["agent_connected"])) {
-    die("You are already connected as {$_SESSION['agent_name']}");
+    header("HTTP/1.0 500 already_logged_in");
+    exit();
 }
 
 /*----------------Start Agent Session--------------*/
