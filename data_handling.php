@@ -57,16 +57,16 @@ if (isset($_GET["file"])) {
             "'" . $data_table_row["V"] . "'"
         ]);
     }
+    /*----------------Start Load Data to Database--------------*/
+    try {
+        $record = new Etudiant();
+        $record->add_multi_records($statementsValues);
+        exit();
+    } catch (mysqli_sql_exception $e) {
+        exit($e->getMessage());
+    }
+    /*----------------End Load Data From CSV File into DB--------------*/
 }
-/*----------------Start Load Data to Database--------------*/
-require_once("db_connection.php");
-const TABLE_NAME = "etudiant";
-
-$record = new Record($db, TABLE_NAME);
-$record->add_multi_records($statementsValues);
-
-/*----------------End Load Data From CSV File into DB--------------*/
-
 
 /*----------------Start Send number of enrolled in speciality students --------------*/
 if (isset($_GET["num_ins"])) {
@@ -87,6 +87,8 @@ if (isset($_GET["num_ins"])) {
 
 
 /*----------------Start Sending first choice (no longer needed) --------------*/
+const TABLE_NAME = "etudiant";
+require "db_connection.php";
 function send_queue($name, $attribute)
 {
     global $db;
