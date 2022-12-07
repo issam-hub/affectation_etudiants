@@ -1,48 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="sad.css">
-  <link rel="stylesheet" href="./dist/sad.df214509.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap"
     rel="stylesheet">
-  <title>Stats</title>
+  <title>Document</title>
 </head>
 
 <body>
-  <!-- Start header -->
   <div class="header">
     <img src="./imgs/logo.svg" alt="logo">
   </div>
-  <!-- End header -->
   <section>
     <div class="stats">
       <div class="container">
         <h2 class="title">Students Statistics</h2>
         <div class="stats-holder">
           <div class="stat">
-            <span data-number="150">150</span>
+            <span data-number="150" id="so">0</span>
             <em>Students Enrolled</em>
           </div>
           <div class="stat">
-            <span data-number="50">50</span>
+            <span data-number="50" id="soo">0</span>
             <em>Students Unenrolled</em>
-          </div>
         </div>
       </div>
-  </section>
-  <div class="i-have-a-pen-i-have-a-pineapple-huuuu-apple-pen">
-    <h1>Pie Chart</h1>
-    <div class="main_box">
-      <canvas id="mychart"></canvas>
     </div>
+  </section>
+  <div class="another-container">   
+    <div class="i-have-a-pen-i-have-a-pineapple-huuuu-apple-pen">
+      <h1>Pie Chart</h1>
+      <div class="pie-container">
+        <div class="piechart"></div>
+      </div>
+    </div>
+  </div>
     <script type="module" src="sadjs.js"></script>
-    <script src="./dist/sad.27980d69.js"></script>
 </body>
 
 </html>
