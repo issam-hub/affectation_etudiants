@@ -28,8 +28,8 @@
           <div class="stat">
             <span data-number="50" id="soo">0</span>
             <em>Students Unenrolled</em>
+          </div>
         </div>
-      </div>
     </div>
   </section>
   <div class="another-container">   
@@ -40,7 +40,19 @@
       </div>
     </div>
   </div>
-    <script type="module" src="sadjs.js"></script>
+    <script src="sadjs.js"></script>
+    <script>
+      /* start redirect to login page if he is not logged in */
+
+      (async function () {
+        let r = await fetch("data_handling.php");
+        console.log(r);
+        if (r.status == 403)
+          location.href = "agentAuth.html";
+      })();
+
+      /* end redirect to login page if he is not logged in */
+    </script>
 </body>
 
 </html>

@@ -70,6 +70,8 @@ if (isset($_GET["file"])) {
 
 /*----------------Start Send number of enrolled in speciality students --------------*/
 if (isset($_GET["num_ins"])) {
+    define("TABLE_NAME", "etudiant");
+    require_once "db_connection.php";
     $res = $db->query("SELECT count(matricule) as num FROM " . TABLE_NAME . " WHERE choisit=1");
     $enrolled = $res->fetch_assoc()["num"];
 
