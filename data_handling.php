@@ -119,6 +119,8 @@ if (
     isset($_GET["gi_limit"]) &&
     isset($_GET["rt_limit"])
 ) {
+    $db->query("UPDATE " . TABLE_NAME . " SET satisfaction='non satisfait', voeu_affecte=NULL");
+
     $queue = [];
     $res = $db->query("SELECT matricule, nom_prenom, mgc, ordre_gl, ordre_gi, ordre_rt FROM " . TABLE_NAME . " WHERE choisit=1 ORDER BY mgc DESC;");
     $temp = [];
