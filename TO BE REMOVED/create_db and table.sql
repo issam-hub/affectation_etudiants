@@ -23,3 +23,5 @@ CREATE TABLE Agent(
 	username VARCHAR(255) NOT NULL PRIMARY KEY DEFAULT "admin",
     mot_de_passe VARCHAR(255) NOT NULL DEFAULT "admin"
 );
+
+INSERT INTO Agent VALUES("admin", "admin");
