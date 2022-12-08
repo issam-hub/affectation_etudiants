@@ -14,18 +14,18 @@
 
 <body>
   <div class="header">
-    <img src="./imgs/logo.svg" alt="logo">
+    <a href="agentChoices.html"><img src="./imgs/logo.svg" alt="logo"></a>
   </div>
   <section>
     <div class="stats">
       <div class="container">
         <h2 class="title">Students Statistics</h2>
         <div class="stats-holder">
-          <div class="stat">
+          <div class="stat" id="stat-holder-enrolled">
             <span data-number="150" id="so">0</span>
             <em>Students Enrolled</em>
           </div>
-          <div class="stat">
+          <div class="stat" id="stat-holder-unenrolled">
             <span data-number="50" id="soo">0</span>
             <em>Students Unenrolled</em>
           </div>
@@ -34,9 +34,10 @@
   </section>
   <div class="another-container">   
     <div class="i-have-a-pen-i-have-a-pineapple-huuuu-apple-pen">
-      <h1>Pie Chart</h1>
+      <h2>Pie Chart</h2>
       <div class="pie-container">
         <div class="piechart"></div>
+        <h3>Total number of Students :<span id="total"> 0 </span></h3>
       </div>
     </div>
   </div>
