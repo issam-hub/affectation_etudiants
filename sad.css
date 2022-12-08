@@ -63,10 +63,10 @@ body {
 }
 
 #stat-holder-enrolled{
-  background-color: #d6d6ee;
+  background-color: #c5c5f5;
 }
 #stat-holder-unenrolled{
-  background-color: #d6e2ee;
+  background-color: #b4d3f2;
 }
 
 .stats .stat {
@@ -149,7 +149,7 @@ h2 {
   width: 400px;
   height: 400px;
   border-radius: 50%;
-  background-image: conic-gradient(#d6e2ee var(--enrolled), #d6d6ee 0%);
+  background-image: conic-gradient(#b4d3f2 var(--enrolled), #c5c5f5 0%);
   /* lightblue var(--unenrolled) */
 }
 .another-container,
