@@ -20,8 +20,6 @@ if (
         die(json_encode(["status" => "NOT_CONNECTED"]));
     }
 
-    // echo json_encode(["status" => "CONNECTED"]);
-
     $res = $db->query("SELECT choisit FROM " . TABLE_NAME . " WHERE matricule='$matricule'");
     $choisit = $res->fetch_assoc()["choisit"];
 
