@@ -1,32 +1,43 @@
-import { Chart } from "chart.js/auto";
+var r = document.querySelector(":root");
+var x = document.getElementById("so");
+var y = document.getElementById("soo");
+function setEnrolled(nu) {
+  x.textContent = nu;
+}
+function setUnenrolled(nu) {
+  y.textContent = nu;
+}
 
-Chart.defaults.color = "#FFFFFF";
-Chart.defaults.font.size = 16;
-var pieCanvas = document.getElementById("mychart");
+let t, z;
+let nuRequest;
+(async function () {
+  let nuRequest = await fetch("data_handling.php?num_ins");
+  console.log(nuRequest);
+  let nuJson = await nuRequest.json();
+  console.log(nuJson);
+  setEnrolled(nuJson["enrolled"]);
+  z = nuJson["enrolled"];
+  setUnenrolled(nuJson["unenrolled"]);
+  t = nuJson["unenrolled"];
+  myFunction_set();
+})();
+function myPercentage() {
+  z = parseInt(z);
+  t = parseInt(t);
+  var s = z + t;
+  var enrolled = (z * 100) / s;
+  return Math.round(enrolled);
+}
+// console.log(myPercentage());
+// Create a function for getting a variable value
+function myFunction_get() {
+  // Get the styles (properties and values) for the root
+  var rs = getComputedStyle(r);
+  var rss = getComputedStyle();
 
-var pieData = {
-   labels: ["enrolled", "not enrolled"],
-   datasets: [
-      {
-         data: [10.3, 8.2],
-         backgroundColor: ["#FF6384", "#63FF84"],
-      },
-   ],
-};
+  alert("The value of --blue is: " + rs.getPropertyValue("--enrolled"));
+}
 
-var pieChart = new Chart(pieCanvas, {
-   type: "pie",
-   data: pieData,
-   options: {
-      plugins: {
-         legend: {
-            labels: {
-               // This more specific font property overrides the global property
-               font: {
-                  size: 20,
-               },
-            },
-         },
-      },
-   },
-});
+function myFunction_set() {
+  r.style.setProperty("--enrolled", myPercentage() + "%");
+}

@@ -7,16 +7,19 @@ spl_autoload_register(function () {
 });
 
 session_start();
-const ACCOUNT_ERR_MSG = "wrong credentials, verify username or password";
+const ACCOUNT_ERR_MSG = "NOT_CONNECTED";
 
 if (!isset($_SESSION["agent_connected"])) {
-    header("Location: agentAuth.html");
+    header("HTTP/1.0 403");
     exit();
 }
 
+header("expires: " . 0);
+header("cache-control: no-cache, must-revalidate");
+
 $statementsValues = [];
 
-/*----------------Start Load Data From CSV File--------------*/
+/*----------------Start Load Data From CSV File into DB--------------*/
 const MAX_ROW_LEN = 10000;
 const START = 15;
 
@@ -54,38 +57,40 @@ if (isset($_GET["file"])) {
             "'" . $data_table_row["V"] . "'"
         ]);
     }
+    /*----------------Start Load Data to Database--------------*/
+    try {
+        $record = new Etudiant();
+        $record->add_multi_records($statementsValues);
+        exit();
+    } catch (mysqli_sql_exception $e) {
+        exit($e->getMessage());
+    }
+    /*----------------End Load Data From CSV File into DB--------------*/
 }
-/*----------------End Load Data From CSV File--------------*/
 
-
-/*----------------Start Load Data to Database--------------*/
-require_once("db_connection.php");
-const TABLE_NAME = "etudiant";
-
-$record = new Record($db, TABLE_NAME);
-$record->add_multi_records($statementsValues);
-/*----------------End Load Data to Database--------------*/
-
-
-/*----------------Start Send enrolled in speciality students --------------*/
+/*----------------Start Send number of enrolled in speciality students --------------*/
 if (isset($_GET["num_ins"])) {
+    define("TABLE_NAME", "etudiant");
+    require_once "db_connection.php";
     $res = $db->query("SELECT count(matricule) as num FROM " . TABLE_NAME . " WHERE choisit=1");
-    $num_ins_specialite = $res->fetch_assoc()["num"];
+    $enrolled = $res->fetch_assoc()["num"];
 
-    $res = $db->query("SELECT count(matricule) as total FROM " . TABLE_NAME);
-    $num_ins_total = $res->fetch_assoc()["total"];
+    $res = $db->query("SELECT count(matricule) as num FROM " . TABLE_NAME . " WHERE choisit=0");
+    $unenrolled = $res->fetch_assoc()["num"];
 
     $infos = [
-        "num_ins_total" => $num_ins_total,
-        "num_ins_specialite" => $num_ins_specialite
+        "enrolled" => $enrolled,
+        "unenrolled" => $unenrolled
     ];
     echo json_encode($infos);
     exit();
 }
-/*----------------End Send enrolled in speciality students --------------*/
+/*----------------End Send number of enrolled in speciality students --------------*/
 
 
-/*----------------Start Sending first choice --------------*/
+/*----------------Start Sending first choice (no longer needed) --------------*/
+const TABLE_NAME = "etudiant";
+require "db_connection.php";
 function send_queue($name, $attribute)
 {
     global $db;
@@ -109,12 +114,13 @@ send_queue("initial_rt", "ordre_rt");
 /*----------------End Sending first choice--------------*/
 
 /*----------------Start Affectation Handling--------------*/
-
 if (
     isset($_GET["gl_limit"]) &&
     isset($_GET["gi_limit"]) &&
     isset($_GET["rt_limit"])
 ) {
+    $db->query("UPDATE " . TABLE_NAME . " SET satisfaction='non satisfait', voeu_affecte=NULL");
+
     $queue = [];
     $res = $db->query("SELECT matricule, nom_prenom, mgc, ordre_gl, ordre_gi, ordre_rt FROM " . TABLE_NAME . " WHERE choisit=1 ORDER BY mgc DESC;");
     $temp = [];
@@ -168,7 +174,9 @@ if (
     }
     exit();
 }
+/*----------------End Affectation Handling--------------*/
 
+/*----------------Start Sending Final Speciality lists (no longer needed)--------------*/
 if (isset($_GET["ordre_gl"])) {
     foreach ($specs["ordre_gl"] as $key => $student) {
         $student = array_flip($student);
@@ -195,12 +203,10 @@ if (isset($_GET["ordre_rt"])) {
     echo json_encode($specs["ordre_rt"]);
     exit();
 }
-
-/*----------------End Affectation Handling--------------*/
+/*----------------End Sending Final Speciality lists--------------*/
 
 
 /*----------------Start Send statistics --------------*/
-
 if (isset($_GET["stats"])) {
     $res = $db->query("SELECT * FROM " . TABLE_NAME . " WHERE choisit=1 ORDER BY MGC DESC");
     $final = [];
@@ -216,11 +222,17 @@ if (isset($_GET["stats"])) {
         if ($student["ordre_RT"] == 1)
             $voeu_choisit = "RT";
 
+        $voeus_choisits[$student["ordre_GL"]] = "GL";
+        $voeus_choisits[$student["ordre_GI"]] = "GI";
+        $voeus_choisits[$student["ordre_RT"]] = "RT";
+
         $final[] = [
             "nom" => $nom_prenom[0],
             "prenom" => $nom_prenom[1],
             "matricule" => $student["matricule"],
-            "voeu choisit" => $voeu_choisit,
+            "voeu choisit 1" => $voeus_choisits[1],
+            "voeu choisit 2" => $voeus_choisits[2],
+            "voeu choisit 3" => $voeus_choisits[3],
             "voeu affecte" => $student["voeu_affecte"],
             "mgc" => $student["MGC"],
             "satisfaction" => $student["satisfaction"]
@@ -230,5 +242,4 @@ if (isset($_GET["stats"])) {
     echo json_encode($final);
     exit();
 }
-
 /*----------------End Send statistics --------------*/

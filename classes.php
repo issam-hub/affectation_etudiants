@@ -1,22 +1,24 @@
 <?php
 
-class Record
+class Etudiant
 {
     const MAX_LEN = 1048576;
     private mysqli $dbObj;
-    private string $tableName;
-    function __construct(mysqli $dbObj, $tableName)
+    const TABLE_NAME = "etudiant";
+    function __construct()
     {
-        $this->dbObj = $dbObj;
-        $this->tableName = $tableName;
+        require_once "db_connection.php";
+        $this->dbObj = $db;
     }
 
     function add_multi_records(array $statementsValues)
     {
-        if ($statementsValues == [])
+        if ($statementsValues == []) {
+            $this->dbObj->close();
             return;
+        }
 
-        $query = "INSERT INTO $this->tableName VALUES";
+        $query = "INSERT INTO " . self::TABLE_NAME . " VALUES";
 
         while (count($statementsValues)) {
             $statementValues = $statementsValues[0];

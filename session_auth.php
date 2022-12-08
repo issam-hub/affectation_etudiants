@@ -3,6 +3,12 @@
 require("db_connection.php");
 const ACCOUNT_ERR_MSG = "NOT_CONNECTED";
 
+session_start();
+if (isset($_SESSION["agent_connected"])) {
+    header("HTTP/1.0 500 already_logged_in");
+    exit();
+}
+
 /*----------------Start Agent Session--------------*/
 const TABLE_NAME2 = "agent";
 
@@ -19,9 +25,9 @@ if (
         exit(ACCOUNT_ERR_MSG);
     }
 
-    session_start();
     $_SESSION['agent_connected'] = "YES";
-    echo "connected with success";
+    $_SESSION['agent_name'] = $_GET["agent_name"];
+    header("Location: agentChoices.html");
 }
 
 /*----------------End Agent Session--------------*/

@@ -1,3 +1,5 @@
+
+
 let choixs = document.querySelectorAll("select");
 
 choixs.forEach((choix) => {

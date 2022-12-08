@@ -49,5 +49,17 @@
         <button type="submit">submit</button>
       </form>
     </div>
+    <script>
+      /* start redirect admin to choices page if he's already logged in */
+
+      (async function () {
+        let r = await fetch("session_auth.php");
+        console.log(r);
+        if (r.statusText == "already_logged_in")
+          location.href = "agentChoices.html";
+      })();
+
+      /* end redirect admin to choices page if he's already logged in */
+    </script>
   </body>
 </html>
