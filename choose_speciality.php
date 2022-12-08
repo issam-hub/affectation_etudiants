@@ -17,22 +17,25 @@ if (
     $user_found = $res->fetch_assoc();
 
     if (!$user_found) {
-        die(ACCOUNT_ERR_MSG);
+        die(json_encode(["status" => "NOT_CONNECTED"]));
     }
 
-    echo "CONNECTED";
+    // echo json_encode(["status" => "CONNECTED"]);
 
     $res = $db->query("SELECT choisit FROM " . TABLE_NAME . " WHERE matricule='$matricule'");
     $choisit = $res->fetch_assoc()["choisit"];
 
-    if ($choisit) {
-        die("you've already chosen");
-    } else {
+
+    if (!$choisit) {
         $gl_choix = $_GET["gl_choix"];
         $gi_choix = $_GET["gi_choix"];
         $rt_choix = $_GET["rt_choix"];
         $db->query("UPDATE " . TABLE_NAME . " SET ordre_gl=$gl_choix, ordre_gi=$gi_choix, ordre_rt=$rt_choix WHERE matricule='$matricule'");
         $db->query("UPDATE " . TABLE_NAME . " SET choisit=1 WHERE matricule='$matricule'");
-        die("your choices were submitted with success");
+        // die("your choices were submitted with success");
     }
+    $res = $db->query("SELECT ordre_gl, ordre_gi, ordre_rt FROM " . TABLE_NAME . " WHERE choisit=1 AND matricule='$matricule'");
+    $json = $res->fetch_assoc();
+    $json["status"] =  "CONNECTED";
+    die(json_encode($json));
 }
