@@ -222,11 +222,17 @@ if (isset($_GET["stats"])) {
         if ($student["ordre_RT"] == 1)
             $voeu_choisit = "RT";
 
+        $voeus_choisits[$student["ordre_GL"]] = "GL";
+        $voeus_choisits[$student["ordre_GI"]] = "GI";
+        $voeus_choisits[$student["ordre_RT"]] = "RT";
+
         $final[] = [
             "nom" => $nom_prenom[0],
             "prenom" => $nom_prenom[1],
             "matricule" => $student["matricule"],
-            "voeu choisit" => $voeu_choisit,
+            "voeu choisit 1" => $voeus_choisits[1],
+            "voeu choisit 2" => $voeus_choisits[2],
+            "voeu choisit 3" => $voeus_choisits[3],
             "voeu affecte" => $student["voeu_affecte"],
             "mgc" => $student["MGC"],
             "satisfaction" => $student["satisfaction"]

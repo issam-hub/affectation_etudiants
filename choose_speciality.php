@@ -20,6 +20,8 @@ if (
         die(ACCOUNT_ERR_MSG);
     }
 
+    echo "CONNECTED";
+
     $res = $db->query("SELECT choisit FROM " . TABLE_NAME . " WHERE matricule='$matricule'");
     $choisit = $res->fetch_assoc()["choisit"];
 
