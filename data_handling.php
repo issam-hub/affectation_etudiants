@@ -172,6 +172,7 @@ if (
             $index++;
         }
     }
+    header("Location: statique.html");
     exit();
 }
 /*----------------End Affectation Handling--------------*/
@@ -226,13 +227,17 @@ if (isset($_GET["stats"])) {
         $voeus_choisits[$student["ordre_GI"]] = "GI";
         $voeus_choisits[$student["ordre_RT"]] = "RT";
 
+        // var_dump($voeus_choisits);
+        $voeus_choisits = array_flip($voeus_choisits);
+        // var_dump($voeus_choisits);
+
         $final[] = [
             "nom" => $nom_prenom[0],
             "prenom" => $nom_prenom[1],
             "matricule" => $student["matricule"],
-            "voeu choisit 1" => $voeus_choisits[1],
-            "voeu choisit 2" => $voeus_choisits[2],
-            "voeu choisit 3" => $voeus_choisits[3],
+            "ordre_gl" => $voeus_choisits["GL"],
+            "ordre_gi" => $voeus_choisits["GI"],
+            "ordre_rt" => $voeus_choisits["RT"],
             "voeu affecte" => $student["voeu_affecte"],
             "mgc" => $student["MGC"],
             "satisfaction" => $student["satisfaction"]
