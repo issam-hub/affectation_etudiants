@@ -35,7 +35,10 @@ if (
         $json["deja_choisit"] = 1;
     }
     $res = $db->query("SELECT ordre_gl, ordre_gi, ordre_rt FROM " . TABLE_NAME . " WHERE choisit=1 AND matricule='$matricule'");
-    $json = $res->fetch_assoc();
+    $res = $res->fetch_assoc();
+    $json["ordre_gl"] = $res["ordre_gl"];
+    $json["ordre_gi"] = $res["ordre_gi"];
+    $json["ordre_rt"] = $res["ordre_rt"];
     $json["status"] =  "CONNECTED";
     die(json_encode($json));
 }
