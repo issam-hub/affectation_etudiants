@@ -188,14 +188,34 @@ form select:focus {
 .popUp .ctnt {
    position: relative;
    height: calc(100% - 100px);
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
 }
 .popUp .ctnt p {
-   position: absolute;
+   /* position: absolute;
    top: 50%;
    left: 50%;
-   translate: -50% -50%;
-   color: green;
+   translate: -50% -50%; */
+   /* color: green; */
    font-size: 1.2rem;
    text-align: center;
    line-height: 1.5;
+   margin-bottom: 10px;
+}
+.popUp .ctnt ol {
+   color: white;
+}
+
+.firstTime {
+   color: yellowgreen;
+}
+
+.already {
+   color: rgb(247, 254, 33);
+}
+
+pre:contains("hello") {
+   color: red;
 }
