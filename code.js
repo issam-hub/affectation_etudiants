@@ -1,5 +1,3 @@
-
-
 let choixs = document.querySelectorAll("select");
 
 choixs.forEach((choix) => {
@@ -42,13 +40,29 @@ document.querySelector("form").onsubmit = (e) => {
       let result = await response.json();
       console.log(result);
       if (result.status === "CONNECTED") {
-         let ul = document.createElement("ul");
-         let li = document.querySelector("li");
-         popUp.textContent = result.status;
+         let ul = document.createElement("ol");
+         ul.setAttribute("type", "1");
+         let li1 = document.querySelector("li");
+         let li2 = document.querySelector("li");
+         let li3 = document.querySelector("li");
+
+         for (let res in result) {
+            if (result[res] === "1") {
+               li1.textContent = result[res];
+            } else if (result[res] === "2") {
+               li2.textContent = result[res];
+            } else if (result[res] === "3") {
+               li3.textContent = result[res];
+            }
+         }
+         ul.append(li1, li2, li3);
+         popUp.textContent = "you successfully choosed !";
+         document.querySelector(".popUp .ctnt").append(ul);
          // popUp.textContent = result.status;
       } else if (result.status === "NOT_CONNECTED") {
          let p = document.createElement("p");
-         p.style.cssText = "color: red; font-weight: bold";
+         p.textContent = result.p.style.cssText =
+            "color: red; font-weight: bold";
          document.querySelector("form").append(p);
       }
    })();
