@@ -23,14 +23,16 @@ if (
     $res = $db->query("SELECT choisit FROM " . TABLE_NAME . " WHERE matricule='$matricule'");
     $choisit = $res->fetch_assoc()["choisit"];
 
-
+    $json = [];
     if (!$choisit) {
+        $json["deja_choisit"] = 0;
         $gl_choix = $_GET["gl_choix"];
         $gi_choix = $_GET["gi_choix"];
         $rt_choix = $_GET["rt_choix"];
         $db->query("UPDATE " . TABLE_NAME . " SET ordre_gl=$gl_choix, ordre_gi=$gi_choix, ordre_rt=$rt_choix WHERE matricule='$matricule'");
         $db->query("UPDATE " . TABLE_NAME . " SET choisit=1 WHERE matricule='$matricule'");
-        // die("your choices were submitted with success");
+    } else {
+        $json["deja_choisit"] = 1;
     }
     $res = $db->query("SELECT ordre_gl, ordre_gi, ordre_rt FROM " . TABLE_NAME . " WHERE choisit=1 AND matricule='$matricule'");
     $json = $res->fetch_assoc();
