@@ -1,127 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Agent Choices</title>
-    <link rel="stylesheet" href="./agentChoices.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-      rel="stylesheet"
-    />
 
-    <style>
-      .filechoose {
-        position: relative;
-        top: 25%;
-        left: 50%;
-        z-index: 10;
-        text-align: center;
-        width: fit-content;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agent Choices</title>
+  <link rel="stylesheet" href="./agentChoices.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet" />
 
-      input {
-        display: none;
-      }
+  <style>
+    .filechoose {
+      position: relative;
+      top: 25%;
+      left: 50%;
+      z-index: 10;
+      text-align: center;
+      width: fit-content;
+    }
 
-      label {
-        padding: 12px 53px;
-        cursor: pointer;
-        border-radius: 50px;
-        /* width: 100%; */
-        background-color: white;
-        display: grid;
-        place-items: center;
-        /* position: absolute; */
-        top: 72%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
-      label[for="annee"] {
-        position: relative;
-        background-color: transparent;
-        color: white;
-        font-weight: bold;
-        font-size: 1.2em;
-        bottom: 40px;
-        left: 0px;
-      }
-      input#annee {
-        position: absolute;
-        width: 100px;
-        display: block;
-        top: -20px;
-        left: -53px;
-        border-radius: 50px;
-        border-color: transparent;
-      }
+    input {
+      display: none;
+    }
 
-      #imageName {
-        color: #171738;
-        font-weight: bold;
-        font-style: italic;
-      }
-    </style>
-  </head>
+    label {
+      padding: 12px 53px;
+      cursor: pointer;
+      border-radius: 50px;
+      /* width: 100%; */
+      background-color: white;
+      display: grid;
+      place-items: center;
+      /* position: absolute; */
+      top: 72%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
 
-  <body>
-    <div class="header">
-      <img src="./imgs/logo.svg" alt="logo" />
-    </div>
-    <div class="title">
-      <h1>choices</h1>
-      <p>choose what your next action</p>
-    </div>
-    <div class="container">
-      <div class="box">
-        <h1>file</h1>
-        <p>enter a CSV file of students</p>
-        <div class="filechoose">
-          <form action="./data_handling.php">
-            <label for="annee">Year :</label>
-            <input type="text" name="annee" id="annee" required />
-            <label for="inputTag">
-              <img src="./imgs/excel.svg" alt="agent" />
-            </label>
-            <input id="inputTag" type="file" accept=".csv" name="file" />
-            <br />
-          </form>
-        </div>
+    label[for="annee"] {
+      position: relative;
+      background-color: transparent;
+      color: white;
+      font-weight: bold;
+      font-size: 1.2em;
+      bottom: 40px;
+      left: 0px;
+    }
+
+    input#annee {
+      position: absolute;
+      width: 100px;
+      display: block;
+      top: -20px;
+      left: -53px;
+      border-radius: 50px;
+      border-color: transparent;
+      text-align: center;
+    }
+
+    input#annee::placeholder {
+      text-align: center;
+      color: rgb(196, 196, 196);
+    }
+
+    input#annee:focus {
+      outline: 0;
+    }
+
+    #imageName {
+      color: #171738;
+      font-weight: bold;
+      font-style: italic;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header">
+    <img src="./imgs/logo.svg" alt="logo" />
+  </div>
+  <div class="title">
+    <h1>choices</h1>
+    <p>choose what your next action</p>
+  </div>
+  <div class="container">
+    <div class="box">
+      <h1>file</h1>
+      <p>enter a CSV file of students</p>
+      <div class="filechoose">
+        <form action="./data_handling.php">
+          <label for="annee">Year :</label>
+          <input pattern="\d{4}_\d{4}" type="text" name="annee" id="annee" required placeholder="aaaa_aaaa" />
+          <label for="inputTag">
+            <img src="./imgs/excel.svg" alt="agent" />
+          </label>
+          <input id="inputTag" type="file" accept=".csv" name="file" />
+          <br />
+        </form>
       </div>
-      <div class="box">
-        <h1>review</h1>
-        <p>here's some stats about students</p>
-        <a href="sad.html"><img src="imgs/bilanIcon.png" alt="" /></a>
-      </div>
-      <div class="box">
-        <h1>result</h1>
-        <p>check the final results</p>
-        <a href="Statique.html"><img src="imgs/checkmark.png" alt="" /></a>
-      </div>
     </div>
-    <script>
-      let input = document.getElementById("inputTag");
-      let imageName = document.getElementById("imageName");
-      let form = document.querySelector("form");
+    <div class="box">
+      <h1>review</h1>
+      <p>here's some stats about students</p>
+      <a href="sad.html"><img src="imgs/bilanIcon.png" alt="" /></a>
+    </div>
+    <div class="box">
+      <h1>result</h1>
+      <p>check the final results</p>
+      <a href="Statique.html"><img src="imgs/checkmark.png" alt="" /></a>
+    </div>
+  </div>
+  <script>
+    let input = document.getElementById("inputTag");
+    let imageName = document.getElementById("imageName");
+    let form = document.querySelector("form");
 
-      input.addEventListener("change", () => {
-        let inputImage = document.querySelector("input[type=file]").files[0];
-        form.submit();
-      });
-    </script>
-    <script>
-      /* start redirect to login page if he is not logged in */
+    input.addEventListener("change", () => {
+      let inputImage = document.querySelector("input[type=file]").files[0];
+      form.submit();
+    });
+  </script>
+  <script>
+    /* start redirect to login page if he is not logged in */
 
-      (async function () {
-        let r = await fetch("data_handling.php");
-        console.log(r);
-        if (r.status == 403) location.href = "agentAuth.html";
-      })();
+    (async function () {
+      let r = await fetch("data_handling.php");
+      console.log(r);
+      if (r.status == 403) location.href = "agentAuth.html";
+    })();
 
-      /* end redirect to login page if he is not logged in */
-    </script>
-  </body>
+    /* end redirect to login page if he is not logged in */
+  </script>
+</body>
+
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,15 +12,17 @@
     rel="stylesheet">
   <title>Document</title>
   <style>
-      #annees {
-        font-size: 1.2em;
-        padding: 5px;
-        position: relative;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -150%);
-      }
-    </style>
+    #annees {
+      font-size: 1.2em;
+      padding: 5px;
+      position: relative;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -150%);
+      border-radius: 10px;
+      border: 2px solid #2e1760;
+    }
+  </style>
 </head>
 
 <body>
@@ -42,9 +45,9 @@
             <em>Students Enrolled</em>
           </div>
         </div>
-    </div>
+      </div>
   </section>
-  <div class="another-container">   
+  <div class="another-container">
     <div class="i-have-a-pen-i-have-a-pineapple-huuuu-apple-pen">
       <h2>Pie Chart</h2>
       <div class="pie-container">
@@ -53,19 +56,19 @@
       </div>
     </div>
   </div>
-    <script src="sadjs.js"></script>
-    <script>
-      /* start redirect to login page if he is not logged in */
+  <script src="sadjs.js"></script>
+  <script>
+    /* start redirect to login page if he is not logged in */
 
-      (async function () {
-        let r = await fetch("data_handling.php");
-        console.log(r);
-        if (r.status == 403)
-          location.href = "agentAuth.html";
-      })();
+    (async function () {
+      let r = await fetch("data_handling.php");
+      console.log(r);
+      if (r.status == 403)
+        location.href = "agentAuth.html";
+    })();
 
-      /* end redirect to login page if he is not logged in */
-    </script>
+    /* end redirect to login page if he is not logged in */
+  </script>
 </body>
 
 </html>
