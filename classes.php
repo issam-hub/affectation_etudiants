@@ -72,6 +72,10 @@ class Etudiant
         );
         heredoc
         );
-        $this->dbObj->query("INSERT INTO nombre_places VALUES('$this->annee', 0, 0, 0)");
+        try {
+            $this->dbObj->query("INSERT INTO nombre_places VALUES('$this->annee', 0, 0, 0)");
+        } catch (mysqli_sql_exception $e) {
+            echo $e->getMessage();
+        }
     }
 }
