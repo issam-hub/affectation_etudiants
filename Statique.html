@@ -28,52 +28,10 @@
     !! جماعة كلما تكتبو حاجة ولا ديرو كومونتار قبلها بلي شا دير دي لالين !!
 -->
 
-<<<<<<< HEAD
-  <body>
-    <!-- Start header -->
-    <div class="header">
-      <a href="agentChoices.html"><img src="./imgs/logo.svg" alt="logo" /></a>
-    </div>
-    <!-- End header -->
-    <div class="text">
-      <h1>Result</h1>
-      <p>We wish you success in your academic path.</p>
-    </div>
-    <!-- Table -->
-    <div class="tab">
-      <table>
-        <tr>
-          <th style="color: white; height: 45px">Order</th>
-          <th style="color: white; height: 45px">Full Name</th>
-          <th style="color: white">ID</th>
-          <th style="color: white">Total average</th>
-          <th style="color: white">GL</th>
-          <th style="color: white">GI</th>
-          <th style="color: white">RT</th>
-          <th style="color: white">wishes affects</th>
-          <th style="color: white">Satisfaction</th>
-        </tr>
-      </table>
-    </div>
-    <h2>Bar Chart representing different Choices affectation</h2>
-    <div class="chart-container"> 
-      <div class="chart">
-      <div class="first-choice"><em>1st</em></div>
-      <div class="second-choice"><em>2nd</em></div>
-      <div class="third-choice"><em>3rd</em></div>
-    </div>
-    </div>
-    <div class="container-h3">
-    <h3>Total choices registered :<span id="total"> 0</span> </h3>
-    </div>
-    <script src="stats.js"></script>
-    <script>
-      /* start redirect to login page if he is not logged in */
-=======
 <body>
   <!-- Start header -->
   <div class="header">
-    <img src="./imgs/logo.svg" alt="logo" />
+    <a href="agentChoices.html"><img src="./imgs/logo.svg" alt="logo" /></a>
   </div>
   <!-- End header -->
   <div class="text">
@@ -97,12 +55,20 @@
       </tr>
     </table>
   </div>
-
+  <h2>Bar Chart representing different Choices affectation</h2>
+  <div class="chart-container">
+    <div class="chart">
+      <div class="first-choice"><em>1st</em></div>
+      <div class="second-choice"><em>2nd</em></div>
+      <div class="third-choice"><em>3rd</em></div>
+    </div>
+  </div>
+  <div class="container-h3">
+    <h3>Total choices registered :<span id="total"> 0</span> </h3>
+  </div>
   <script src="stats.js"></script>
   <script>
     /* start redirect to login page if he is not logged in */
->>>>>>> abbbc7864d4bce631ae6801c249a8259a3470efd
-
     (async function () {
       let r = await fetch("data_handling.php");
       console.log(r);
