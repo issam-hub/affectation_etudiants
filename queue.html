@@ -1,40 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Queue</title>
+    <link rel="stylesheet" href="./queue.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Queue</title>
-  <link rel="stylesheet" href="./queue.css">
-</head>
-
-<body>
-  <div class="header">
-    <img src="./imgs/logo.svg" alt="logo">
-  </div>
-  <div class="content">
-    <form action="./data_handling.php">
-      <div class="inp">
-        <label for="" class="ord">GL</label>
-        <input pattern="\d+" type="text" name="gl_limit">
-      </div>
-      <div class="inp">
-        <label for="" class="ord">GI</label>
-        <input pattern="\d+" type="text" name="gi_limit">
-      </div>
-      <div class="inp">
-        <label for="" class="ord">RT</label>
-        <input pattern="\d+" type="text" name="rt_limit">
-      </div>
-      <div class="inp">
-        <label for="" class="year">Year: </label>
-        <select name="annee" id="annee">
-          <option value="semple">semple</option>
-        </select>
-      </div>
-      <button type="submit">submit</button>
-    </form>
-  </div>
-</body>
-
+  <body>
+    <div class="header">
+      <img src="./imgs/logo.svg" alt="logo" />
+    </div>
+    <div class="content">
+      <form action="data_handling.php">
+        <div class="inp">
+          <label for="" class="ord">GL</label>
+          <input pattern="\d+" type="text" name="gl_limit" />
+        </div>
+        <div class="inp">
+          <label for="" class="ord">GI</label>
+          <input pattern="\d+" type="text" name="gi_limit" />
+        </div>
+        <div class="inp">
+          <label for="" class="ord">RT</label>
+          <input pattern="\d+" type="text" name="rt_limit" />
+        </div>
+        <div class="inp">
+          <label for="" class="year">Year: </label>
+          <select name="annee" id="annees"></select>
+        </div>
+        <button type="submit">submit</button>
+      </form>
+    </div>
+    <script>
+      (async function () {
+        let r = await fetch("data_handling.php?annees_list");
+        let json = await r.json();
+        let select = document.querySelector("#annees");
+        for (row of json) {
+          select.innerHTML += `
+              <option value="${row["annee"]}">${row["annee"].replace(
+            "_",
+            "/"
+          )}</option>
+              `;
+        }
+        let annees = document.querySelector("#annees");
+        console.log(json);
+      })();
+    </script>
+  </body>
 </html>
