@@ -14,12 +14,24 @@
   </div>
   <div class="content">
     <form action="./data_handling.php">
-      <label for="">GL</label>
-      <input type="text" name="gl_limit">
-      <label for="">GI</label>
-      <input type="text" name="gi_limit">
-      <label for="">RT</label>
-      <input type="text" name="rt_limit">
+      <div class="inp">
+        <label for="" class="ord">GL</label>
+        <input pattern="\d+" type="text" name="gl_limit">
+      </div>
+      <div class="inp">
+        <label for="" class="ord">GI</label>
+        <input pattern="\d+" type="text" name="gi_limit">
+      </div>
+      <div class="inp">
+        <label for="" class="ord">RT</label>
+        <input pattern="\d+" type="text" name="rt_limit">
+      </div>
+      <div class="inp">
+        <label for="" class="year">Year: </label>
+        <select name="annee" id="annee">
+          <option value="semple">semple</option>
+        </select>
+      </div>
       <button type="submit">submit</button>
     </form>
   </div>
