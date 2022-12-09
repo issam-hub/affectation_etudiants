@@ -25,3 +25,10 @@ CREATE TABLE Agent(
 );
 
 INSERT INTO Agent VALUES("admin", "admin");
+
+CREATE TABLE nombre_places(
+    annee VARCHAR(255) PRIMARY KEY NOT NULL,
+    gl INT DEFAULT 0,
+    gi INT DEFAULT 0,
+    rt INT DEFAULT 0
+);
