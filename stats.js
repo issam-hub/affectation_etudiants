@@ -51,10 +51,30 @@ async function fire() {
   let firstChoice = nChoiceAffected[0];
   let secondChoice = nChoiceAffected[1];
   let thirdChoice = nChoiceAffected[2];
+  let totale = firstChoice+secondChoice+thirdChoice;
+  var totalChoices = document.getElementById("total");
+  totalChoices.textContent = totale;
+  var r = document.querySelector(":root");
+  var rr =document.querySelector(":root");
+ 
+  function myPercentage(choice,total) {
+    var percentageChoice = (choice * 100) / total;
+    return Math.round(percentageChoice);
+  
+  }
+  // console.log(myPercentage());
+  // Create a function for getting a variable value
 
+  function setSecondChoice() {
+    r.style.setProperty("--second-choice", myPercentage(secondChoice,totale) + "%");
+  }
+  function setThirdChoice() {
+    rr.style.setProperty("--third-choice", myPercentage(thirdChoice,totale) + "%");
+  }
 
+  setSecondChoice();
+  setThirdChoice();
   /* End affecting number of students who get their nth choice */
-
 }
 
 fire();

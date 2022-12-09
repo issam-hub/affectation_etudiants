@@ -22,6 +22,10 @@ html {
    width: 50px;
    
 }
+:root{
+   --second-choice:60%;
+   --third-choice :20%;
+}
 
 
 .text {
@@ -132,3 +136,54 @@ td:hover{
    }
 } 
 */
+em{
+   font-weight: bold;
+   margin-top: 20px;
+   padding: 0;
+
+}
+h2, h3{
+   color: #2e1760;
+   text-align: center;
+   margin:10px ;
+}
+
+.container-h3{
+   margin-bottom: 50px;
+}
+.chart-container{
+   color: white;
+   text-align: center;
+   width: 100%;
+   height: 50%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-bottom: 20px;
+   margin-top: 30px;
+}
+.chart{
+   display: flex;
+   justify-content: end;
+   width: 800px;
+   height: 40px;
+
+}
+.first-choice{
+   width: 100%;
+   height: 100%;
+   background-color: #b4d3f2;
+
+}
+.second-choice{
+   width: var(--second-choice);
+   height: 100%;
+   background-color: #c5c5f5;
+
+}
+.third-choice{
+   width: var(--third-choice);
+   height: 100%;
+   background-color: #9da2ef;
+
+}
