@@ -14,11 +14,30 @@ html {
    /* padding-top & padding-bottom */
    padding-block: 10px;
    background-color: #171738;
-   text-align: center;
+   /* text-align: center; */
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }
 .header img {
    height: 50px;
    width: 50px;
+   cursor: pointer;
+}
+
+.header a {
+   display: grid;
+   place-items: center;
+   text-decoration: none;
+   translate: 450%;
+   height: 40px;
+   padding-inline: 15px;
+   border-radius: 30px;
+   border: 0;
+   background-color: white;
+   color: #2e1760;
+   font-size: 1.03rem;
+   font-weight: bold;
    cursor: pointer;
 }
 .title {
@@ -37,7 +56,7 @@ html {
 .container {
    margin-inline: auto;
    display: flex;
-   width: 1000px;
+   width: 1250px;
    flex-wrap: wrap;
    justify-content: space-between;
    align-items: center;
@@ -86,6 +105,12 @@ html {
 }
 .container .box:nth-child(3) {
    background-image: url("./imgs/resultat.jpg");
+}
+.container .box:nth-child(4) {
+   background-image: url("./imgs/chairs.jpg");
+}
+.container .box:nth-child(4) a img {
+   height: 35px;
 }
 
 .box a {
