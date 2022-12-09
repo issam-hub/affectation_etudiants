@@ -27,9 +27,13 @@ let gl_choix = document.getElementById("gl_choix");
 let gi_choix = document.getElementById("gi_choix");
 let rt_choix = document.getElementById("rt_choix");
 
+let pERROR; // wrong credentials message
 document.querySelector("form").onsubmit = (e) => {
   e.preventDefault();
-
+  if (pERROR != null) {
+    console.log("hwch");
+    pERROR.remove();
+  }
   (async function getData() {
     let response = await fetch(
       `choose_speciality.php?matricule=${matricule.value}&code=${code.value}` +
@@ -76,10 +80,10 @@ document.querySelector("form").onsubmit = (e) => {
           "animation: pop 0.5s forwards;";
       }, 300);
     } else if (result.status === "NOT_CONNECTED") {
-      let p = document.createElement("p");
-      p.textContent = "* wrong credentials, fix username or password";
-      p.style.cssText = "color: red; font-weight: bold";
-      document.querySelector("form").append(p);
+      pERROR = document.createElement("p");
+      pERROR.textContent = "* wrong credentials, fix username or password";
+      pERROR.style.cssText = "color: red; font-weight: bold";
+      document.querySelector("form").append(pERROR);
     }
   })();
 };

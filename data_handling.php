@@ -18,7 +18,8 @@ header("expires: " . 0);
 header("cache-control: no-cache, must-revalidate");
 
 $statementsValues = [];
-
+$annee = "2022_2023";
+const TABLE_NAME = "etudiant";
 /*----------------Start Load Data From CSV File into DB--------------*/
 const MAX_ROW_LEN = 10000;
 const START = 15;
@@ -29,7 +30,10 @@ const START = 15;
  */
 
 
-if (isset($_GET["file"])) {
+if (
+    isset($_GET["file"]) &&
+    isset($_GET["annee"])
+) {
     $file = fopen($_GET["file"], "r");
 
     $keys = [];
@@ -59,18 +63,19 @@ if (isset($_GET["file"])) {
     }
     /*----------------Start Load Data to Database--------------*/
     try {
-        $record = new Etudiant();
+        $record = new Etudiant($_GET["annee"]);
+        $record->create_table();
         $record->add_multi_records($statementsValues);
-        exit();
     } catch (mysqli_sql_exception $e) {
-        exit($e->getMessage());
+        echo $e->getMessage();
     }
     /*----------------End Load Data From CSV File into DB--------------*/
+    exit();
 }
 
 /*----------------Start Send number of enrolled in speciality students --------------*/
 if (isset($_GET["num_ins"])) {
-    define("TABLE_NAME", "etudiant");
+    define("TABLE_NAME", "etudiant_$annee");
     require_once "db_connection.php";
     $res = $db->query("SELECT count(matricule) as num FROM " . TABLE_NAME . " WHERE choisit=1");
     $enrolled = $res->fetch_assoc()["num"];
@@ -89,13 +94,12 @@ if (isset($_GET["num_ins"])) {
 
 
 /*----------------Start Sending first choice (no longer needed) --------------*/
-const TABLE_NAME = "etudiant";
 require "db_connection.php";
 function send_queue($name, $attribute)
 {
-    global $db;
+    global $db, $annee;
     $queue = [];
-    $res = $db->query("SELECT matricule, nom_prenom, mgc, $attribute FROM " . TABLE_NAME . " WHERE choisit=1 AND $attribute=1 ORDER BY mgc DESC;");
+    $res = $db->query("SELECT matricule, nom_prenom, mgc, $attribute FROM " . TABLE_NAME . "_$annee" . " WHERE choisit=1 AND $attribute=1 ORDER BY mgc DESC;");
     $temp = [];
     while ($temp = $res->fetch_assoc()) {
         array_push($queue, $temp);
@@ -114,15 +118,22 @@ send_queue("initial_rt", "ordre_rt");
 /*----------------End Sending first choice--------------*/
 
 /*----------------Start Affectation Handling--------------*/
-if (
-    isset($_GET["gl_limit"]) &&
-    isset($_GET["gi_limit"]) &&
-    isset($_GET["rt_limit"])
-) {
-    $db->query("UPDATE " . TABLE_NAME . " SET satisfaction='non satisfait', voeu_affecte=NULL");
+
+function affectation($annee)
+{
+    require_once "db_connection.php";
+    global $db;
+    $db->query("UPDATE " . TABLE_NAME . "_$annee" . " SET satisfaction='non satisfait', voeu_affecte=NULL");
+
+    define("nombre_places", "nombre_places");
+    $res = $db->query("SELECT gl, gi, rt FROM " . nombre_places . " WHERE annee='$annee'");
+    $limits = $res->fetch_assoc();
+    $gl_limit = $limits["gl"];
+    $gi_limit = $limits["gi"];
+    $rt_limit = $limits["rt"];
 
     $queue = [];
-    $res = $db->query("SELECT matricule, nom_prenom, mgc, ordre_gl, ordre_gi, ordre_rt FROM " . TABLE_NAME . " WHERE choisit=1 ORDER BY mgc DESC;");
+    $res = $db->query("SELECT matricule, nom_prenom, mgc, ordre_gl, ordre_gi, ordre_rt FROM " . TABLE_NAME . "_$annee" . " WHERE choisit=1 ORDER BY mgc DESC;");
     $temp = [];
     while ($temp = $res->fetch_assoc()) {
         array_push($queue, array_flip($temp));
@@ -136,10 +147,15 @@ if (
         "ordre_rt" => [],
     ];
 
+    // $limits = [
+    //     "ordre_gl" => $_GET["gl_limit"],
+    //     "ordre_gi" => $_GET["gi_limit"],
+    //     "ordre_rt" => $_GET["rt_limit"],
+    // ];
     $limits = [
-        "ordre_gl" => $_GET["gl_limit"],
-        "ordre_gi" => $_GET["gi_limit"],
-        "ordre_rt" => $_GET["rt_limit"],
+        "ordre_gl" => $gl_limit,
+        "ordre_gi" => $gi_limit,
+        "ordre_rt" => $rt_limit,
     ];
 
     $spec_map = [
@@ -161,19 +177,35 @@ if (
 
                 $matricule = array_keys($list[$i])[0];
                 if ($index == 1) {
-                    $db->query("UPDATE " . TABLE_NAME . " SET satisfaction='satisfait' WHERE matricule='" . $matricule . "'");
+                    $db->query("UPDATE " . TABLE_NAME . "_$annee" . " SET satisfaction='satisfait' WHERE matricule='" . $matricule . "'");
                 }
 
                 $voeu_affecte = $spec_map[$spec_name];
-                $db->query("UPDATE " . TABLE_NAME . " SET voeu_affecte='" . $voeu_affecte . "' WHERE matricule='" . $matricule . "'");
+                $db->query("UPDATE " . TABLE_NAME . "_$annee" . " SET voeu_affecte='" . $voeu_affecte . "' WHERE matricule='" . $matricule . "'");
 
                 break;
             }
             $index++;
         }
     }
+}
+
+if (
+    isset($_GET["gl_limit"]) &&
+    isset($_GET["gi_limit"]) &&
+    isset($_GET["rt_limit"])
+) {
+    echo "hwch";
+    $annee = "2022_2023";
+    define("nombre_places", "nombre_places");
+    $db->query("UPDATE " . nombre_places . " 
+    SET gl={$_GET['gl_limit']},
+        gi={$_GET['gi_limit']},
+        rt={$_GET['rt_limit']}
+    WHERE annee='$annee'
+    ");
+
     header("Location: statique.html");
-    exit();
 }
 /*----------------End Affectation Handling--------------*/
 
@@ -209,7 +241,8 @@ if (isset($_GET["ordre_rt"])) {
 
 /*----------------Start Send statistics --------------*/
 if (isset($_GET["stats"])) {
-    $res = $db->query("SELECT * FROM " . TABLE_NAME . " WHERE choisit=1 ORDER BY MGC DESC");
+    affectation($annee);
+    $res = $db->query("SELECT * FROM " . TABLE_NAME . "_$annee" . " WHERE choisit=1 ORDER BY MGC DESC");
     $final = [];
     while (($student = $res->fetch_assoc()) != null) {
         $nom_prenom = preg_split("/[ ]+/", $student["nom_prenom"]);
