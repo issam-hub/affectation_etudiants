@@ -9,13 +9,32 @@ function setUnenrolled(nu) {
   y.textContent = nu;
 }
 
-
 //totalStudent.textContent = ;
 
 let t, z;
 let nuRequest;
 (async function () {
-  let nuRequest = await fetch("data_handling.php?num_ins");
+  let r = await fetch("data_handling.php?annees_list");
+  let json = await r.json();
+  let select = document.querySelector("#annees");
+  for (row of json) {
+    select.innerHTML += `
+          <option value="${row["annee"]}">${row["annee"].replace(
+      "_",
+      "/"
+    )}</option>
+          `;
+  }
+  let annees = document.querySelector("#annees");
+  fire(annees.value);
+
+  annees.addEventListener("click", function () {
+    fire(annees.value);
+  });
+})();
+
+async function fire(annees) {
+  let nuRequest = await fetch("data_handling.php?num_ins&annee=" + annees);
   console.log(nuRequest);
   let nuJson = await nuRequest.json();
   console.log(nuJson);
@@ -24,15 +43,15 @@ let nuRequest;
   setUnenrolled(nuJson["unenrolled"]);
   t = nuJson["unenrolled"];
   myFunction_set();
-})();
+}
+
 function myPercentage() {
   z = parseInt(z);
   t = parseInt(t);
   var s = z + t;
-  totalStudent.textContent=s;
+  totalStudent.textContent = s;
   var enrolled = (z * 100) / s;
   return Math.round(enrolled);
-
 }
 // console.log(myPercentage());
 // Create a function for getting a variable value
@@ -46,4 +65,3 @@ function myFunction_get() {
 function myFunction_set() {
   r.style.setProperty("--enrolled", myPercentage() + "%");
 }
-

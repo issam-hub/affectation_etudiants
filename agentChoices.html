@@ -35,10 +35,28 @@
         background-color: white;
         display: grid;
         place-items: center;
-        position: absolute;
+        /* position: absolute; */
         top: 72%;
         left: 50%;
         transform: translate(-50%, -50%);
+      }
+      label[for="annee"] {
+        position: relative;
+        background-color: transparent;
+        color: white;
+        font-weight: bold;
+        font-size: 1.2em;
+        bottom: 40px;
+        left: 0px;
+      }
+      input#annee {
+        position: absolute;
+        width: 100px;
+        display: block;
+        top: -20px;
+        left: -53px;
+        border-radius: 50px;
+        border-color: transparent;
       }
 
       #imageName {
@@ -62,10 +80,12 @@
         <h1>file</h1>
         <p>enter a CSV file of students</p>
         <div class="filechoose">
-          <label for="inputTag">
-            <img src="./imgs/excel.svg" alt="agent" />
-          </label>
           <form action="./data_handling.php">
+            <label for="annee">Year :</label>
+            <input type="text" name="annee" id="annee" required />
+            <label for="inputTag">
+              <img src="./imgs/excel.svg" alt="agent" />
+            </label>
             <input id="inputTag" type="file" accept=".csv" name="file" />
             <br />
           </form>

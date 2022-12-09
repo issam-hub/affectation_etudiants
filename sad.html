@@ -10,6 +10,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap"
     rel="stylesheet">
   <title>Document</title>
+  <style>
+      #annees {
+        font-size: 1.2em;
+        padding: 5px;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -150%);
+      }
+    </style>
 </head>
 
 <body>
@@ -20,6 +30,8 @@
     <div class="stats">
       <div class="container">
         <h2 class="title">Students Statistics</h2>
+        <select name="annees" id="annees">
+        </select>
         <div class="stats-holder">
           <div class="stat" id="stat-holder-enrolled">
             <span data-number="150" id="soo">0</span>

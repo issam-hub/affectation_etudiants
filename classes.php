@@ -5,10 +5,12 @@ class Etudiant
     const MAX_LEN = 1048576;
     private mysqli $dbObj;
     private $table_name = "etudiant";
+    private $annee;
     function __construct($annee)
     {
         require_once "db_connection.php";
         $this->dbObj = $db;
+        $this->annee = $annee;
         $this->table_name .= "_$annee";
     }
 
@@ -41,7 +43,11 @@ class Etudiant
 
     function create_table()
     {
-        $this->dbObj->query("DROP TABLE " . $this->table_name);
+        try {
+            $this->dbObj->query("DROP TABLE " . $this->table_name);
+        } catch (mysqli_sql_exception $e) {
+            echo $e->getMessage();
+        }
         $this->dbObj->query("USE affectation_etudiants;");
         $this->dbObj->query(
             <<<heredoc
@@ -66,5 +72,6 @@ class Etudiant
         );
         heredoc
         );
+        $this->dbObj->query("INSERT INTO nombre_places VALUES('$this->annee', 0, 0, 0)");
     }
 }

@@ -73,14 +73,32 @@ if (
     exit();
 }
 
-/*----------------Start Send number of enrolled in speciality students --------------*/
-if (isset($_GET["num_ins"])) {
-    define("TABLE_NAME", "etudiant_$annee");
+/*----------------Start Send list of archived data years --------------*/
+
+if (isset($_GET["annees_list"])) {
     require_once "db_connection.php";
-    $res = $db->query("SELECT count(matricule) as num FROM " . TABLE_NAME . " WHERE choisit=1");
+    $res = $db->query("SELECT annee FROM nombre_places ORDER BY  SUBSTRING(annee,6) DESC");
+    // $count = [];
+    while (($count[] = $res->fetch_assoc())) {
+    }
+    array_pop($count);
+    echo json_encode($count);
+    exit();
+}
+
+/*----------------End Send list of archived data years --------------*/
+
+/*----------------Start Send number of enrolled in speciality students --------------*/
+if (
+    isset($_GET["num_ins"]) &&
+    isset($_GET["annee"])
+) {
+    $annee = $_GET["annee"];
+    require_once "db_connection.php";
+    $res = $db->query("SELECT count(matricule) as num FROM " . TABLE_NAME . "_$annee" . " WHERE choisit=1");
     $enrolled = $res->fetch_assoc()["num"];
 
-    $res = $db->query("SELECT count(matricule) as num FROM " . TABLE_NAME . " WHERE choisit=0");
+    $res = $db->query("SELECT count(matricule) as num FROM " . TABLE_NAME . "_$annee" . " WHERE choisit=0");
     $unenrolled = $res->fetch_assoc()["num"];
 
     $infos = [
@@ -193,10 +211,11 @@ function affectation($annee)
 if (
     isset($_GET["gl_limit"]) &&
     isset($_GET["gi_limit"]) &&
-    isset($_GET["rt_limit"])
+    isset($_GET["rt_limit"]) &&
+    isset($_GET["annee"])
 ) {
     echo "hwch";
-    $annee = "2022_2023";
+    $annee = $_GET["annee"];
     define("nombre_places", "nombre_places");
     $db->query("UPDATE " . nombre_places . " 
     SET gl={$_GET['gl_limit']},
@@ -240,7 +259,11 @@ if (isset($_GET["ordre_rt"])) {
 
 
 /*----------------Start Send statistics --------------*/
-if (isset($_GET["stats"])) {
+if (
+    isset($_GET["stats"]) &&
+    isset($_GET["annee"])
+) {
+    $annee = $_GET["annee"];
     affectation($annee);
     $res = $db->query("SELECT * FROM " . TABLE_NAME . "_$annee" . " WHERE choisit=1 ORDER BY MGC DESC");
     $final = [];
