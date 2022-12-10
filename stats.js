@@ -90,18 +90,21 @@ async function fire(annee) {
       "--first-choice",
       (100 - myPercentage(secondChoice, totale) - myPercentage(thirdChoice,totale)) + "%"
     );
-    // if(firstChoice != 0)
-      firstN.textContent = firstChoice;
+
+      firstN.textContent =
+        firstChoice + ` (${myPercentage(firstChoice, totale)}%)`;
   }
   function setSecondChoice() {
     r.style.setProperty("--second-choice", myPercentage(secondChoice,totale) + "%");
-    // if (secondChoice != 0)
-     secondN.textContent = secondChoice;
+
+     secondN.textContent =
+       secondChoice + ` (${myPercentage(secondChoice, totale)}%)`;
   }
   function setThirdChoice() {
     rr.style.setProperty("--third-choice", myPercentage(thirdChoice,totale) + "%");
-    // if (thirdChoice != 0)
-     thirdN.textContent = thirdChoice;
+
+     thirdN.textContent =
+       thirdChoice + ` (${myPercentage(thirdChoice, totale)}%)`;
   }
 
   setFirstChoice();
