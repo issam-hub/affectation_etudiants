@@ -30,7 +30,7 @@ body {
    translate: 100%;
 }
 
-.header a {
+.header a[href="disconnect.php"] {
    display: grid;
    place-items: center;
    text-decoration: none;
