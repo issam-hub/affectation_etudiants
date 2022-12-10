@@ -15,13 +15,33 @@ html {
    /* padding-top & padding-bottom */
    padding-block: 10px;
    background-color: #171738;
-   text-align: center;
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }
 .header img {
    height: 50px;
    width: 50px;
    cursor: pointer;
+   translate: 100%;
 }
+
+.header a {
+   display: grid;
+   place-items: center;
+   text-decoration: none;
+   translate: 450%;
+   height: 40px;
+   padding-inline: 15px;
+   border-radius: 30px;
+   border: 0;
+   background-color: white;
+   color: #2e1760;
+   font-size: 1.03rem;
+   font-weight: bold;
+   cursor: pointer;
+}
+
 /* end header */
 
 .content {
@@ -103,4 +123,8 @@ label.year {
 
 select {
    margin-left: 30px;
+   padding: 10px 20px;
+   border-radius: 20px;
+   font-size: 1.05rem;
+   border: 3px solid #171738;
 }

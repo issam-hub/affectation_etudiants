@@ -23,6 +23,7 @@ html {
    height: 50px;
    width: 50px;
    cursor: pointer;
+   translate: 100%;
 }
 
 .header a {

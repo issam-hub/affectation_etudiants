@@ -1,76 +1,96 @@
 /* start general rules */
 body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Lato", sans-serif;
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-family: "Lato", sans-serif;
 }
 html {
-  scroll-behavior: smooth;
+   scroll-behavior: smooth;
 }
 /* end general rules */
 
 /* start header */
 .header {
-  /* padding-top & padding-bottom */
-  padding-block: 10px;
-  background-color: #171738;
-  text-align: center;
+   /* padding-top & padding-bottom */
+   padding-block: 10px;
+   background-color: #171738;
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }
 .header img {
-  height: 50px;
-  width: 50px;
+   height: 50px;
+   width: 50px;
+   translate: 100%;
 }
+
+.header a {
+   display: grid;
+   place-items: center;
+   text-decoration: none;
+   translate: 450%;
+   height: 40px;
+   padding-inline: 15px;
+   border-radius: 30px;
+   border: 0;
+   background-color: white;
+   color: #2e1760;
+   font-size: 1.03rem;
+   font-weight: bold;
+   cursor: pointer;
+}
+
 :root {
-  --first-choice: 0%;
-  --second-choice: 0%;
-  --third-choice: 0%;
+   --first-choice: 0%;
+   --second-choice: 0%;
+   --third-choice: 0%;
 }
 
 .text {
-  text-align: center;
-  translate: 0 -50%;
-  position: relative;
-  top: 50px;
+   text-align: center;
+   translate: 0 -50%;
+   position: relative;
+   top: 50px;
 }
 
 h1 {
-  color: #171738;
-  font-size: 3rem; /* 48px */
+   color: #171738;
+   font-size: 3rem; /* 48px */
 }
 .text p {
-  font-style: italic;
-  font-size: 1.1rem; /* 17.6px */
+   font-style: italic;
+   font-size: 1.1rem; /* 17.6px */
 }
 
 .tab {
-  padding: 1px;
-  width: 850px;
-  position: relative;
-  margin: 25px 100px;
-  left: 150px;
+   padding: 1px;
+   width: 850px;
+   position: relative;
+   margin: 25px 100px;
+   left: 150px;
 }
 th {
-  width: 850px;
-  border-bottom: 2px solid #2e1760;
-  border-top: 2px solid #2e1760;
-  border-right: 2px solid #171738;
-  border-left: 2px solid #171738;
-  text-align: center;
-  background-color: #2e1760;
-  font-style: italic;
+   width: 850px;
+   border-bottom: 2px solid #2e1760;
+   border-top: 2px solid #2e1760;
+   border-right: 2px solid #171738;
+   border-left: 2px solid #171738;
+   text-align: center;
+   background-color: #2e1760;
+   font-style: italic;
 }
 td {
-  width: 850px;
-  border-bottom: 2px solid #dff3e4;
-  border-right: 2px solid rgb(180, 173, 173);
-  border-left: 2px solid rgb(180, 173, 173);
-  text-align: center;
-  padding-top: 7px;
-  padding-bottom: 7px;
+   width: 850px;
+   border-bottom: 2px solid #dff3e4;
+   border-right: 2px solid rgb(180, 173, 173);
+   border-left: 2px solid rgb(180, 173, 173);
+   text-align: center;
+   padding-top: 7px;
+   padding-bottom: 7px;
 }
 td:hover {
-  background-color: rgb(231, 219, 219);
+   background-color: rgb(231, 219, 219);
 }
 
 /* end header */
@@ -129,56 +149,56 @@ td:hover {
 } 
 */
 em {
-  font-weight: bold;
-  margin-top: 20px;
-  padding: 0;
+   font-weight: bold;
+   margin-top: 20px;
+   padding: 0;
 }
 h2,
 h3 {
-  color: #2e1760;
-  text-align: center;
-  margin: 10px;
+   color: #2e1760;
+   text-align: center;
+   margin: 10px;
 }
 
 .container-h3 {
-  margin-bottom: 50px;
+   margin-bottom: 50px;
 }
 .chart-container {
-  color: white;
-  text-align: center;
-  width: 100%;
-  height: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
-  margin-top: 30px;
+   color: white;
+   text-align: center;
+   width: 100%;
+   height: 50%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-bottom: 20px;
+   margin-top: 30px;
 }
 .chart {
-  display: flex;
-  justify-content: center;
-  width: 800px;
-  height: 40px;
-  overflow: hidden;
+   display: flex;
+   justify-content: center;
+   width: 800px;
+   height: 40px;
+   overflow: hidden;
 }
 .first-choice {
-  width: var(--first-choice);
-  height: 100%;
-  background-color: #b4d3f2;
+   width: var(--first-choice);
+   height: 100%;
+   background-color: #b4d3f2;
 }
 .second-choice {
-  width: var(--second-choice);
-  height: 100%;
-  background-color: #c5c5f5;
+   width: var(--second-choice);
+   height: 100%;
+   background-color: #c5c5f5;
 }
 .third-choice {
-  width: var(--third-choice);
-  height: 100%;
-  background-color: #9da2ef;
+   width: var(--third-choice);
+   height: 100%;
+   background-color: #9da2ef;
 }
 
 .chart span[id$="N"] {
-  display: block;
-  font-weight: bold;
-  color: #171738;
+   display: block;
+   font-weight: bold;
+   color: #171738;
 }
