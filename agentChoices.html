@@ -123,10 +123,10 @@
     let input = document.getElementById("inputTag");
     let imageName = document.getElementById("imageName");
     let form = document.querySelector("form");
-
-    input.addEventListener("change", () => {
+    input.addEventListener("input", () => {
       let inputImage = document.querySelector("input[type=file]").files[0];
       form.submit();
+      document.querySelector("input[type=file]").value = "";
     });
   </script>
   <script>

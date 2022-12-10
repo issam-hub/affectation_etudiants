@@ -70,6 +70,7 @@ if (
         echo $e->getMessage();
     }
     /*----------------End Load Data From CSV File into DB--------------*/
+    header("Location: Statique.html");
     exit();
 }
 

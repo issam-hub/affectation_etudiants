@@ -10,6 +10,19 @@ class Etudiant
     {
         require_once "db_connection.php";
         $this->dbObj = $db;
+        if (strlen($annee) > 9)
+            throw new Exception("make sure that annee is : aaaa_aaaa");
+
+        $annee1 = explode("_", $annee)[0];
+        $annee2 = explode("_", $annee)[1];
+
+        if (
+            !preg_match("/\d\d\d\d/", $annee1) ||
+            !preg_match("/\d\d\d\d/", $annee2) ||
+            $annee2 != $annee1 + 1
+        )
+            throw new Exception("make sure that annee is : aaaa_aaaa");
+
         $this->annee = $annee;
         $this->table_name .= "_$annee";
     }
@@ -36,7 +49,7 @@ class Etudiant
         }
 
         $query[strlen($query) - 1] = ";";
-        echo "$query<br>";
+        // echo "$query<br>";
         $this->dbObj->query($query);
         $this->add_multi_records($statementsValues);
     }
