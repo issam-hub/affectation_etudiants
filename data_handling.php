@@ -29,12 +29,12 @@ const START = 15;
  * (matricule, nom_prenom, mgc, ordre_gl, ordre_gi, ordre_rt, choisit) E15, B15, Q15, R15, S15, T15, U15, V15
  */
 
-require_once "db_connection.php";
-
 if (
     isset($_GET["file"]) &&
     isset($_GET["annee"])
 ) {
+
+
     $file = fopen("data csv files/" . $_GET["file"], "r");
 
     $keys = [];
@@ -74,7 +74,7 @@ if (
     header("Location: queue.html");
     exit();
 }
-
+require_once "db_connection.php";
 /*----------------Start Send list of archived data years --------------*/
 
 if (isset($_GET["annees_list"])) {
