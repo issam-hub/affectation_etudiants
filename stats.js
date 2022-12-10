@@ -77,6 +77,8 @@ async function fire(annee) {
   var rr =document.querySelector(":root");
  
   function myPercentage(choice,total) {
+    if(total == 0)
+      return 0;
     var percentageChoice = (choice * 100) / total;
     // console.log(Math.round(percentageChoice));
     return Math.round(percentageChoice);
@@ -92,19 +94,22 @@ async function fire(annee) {
     );
 
       firstN.textContent =
-        firstChoice + ` (${myPercentage(firstChoice, totale)}%)`;
+        firstChoice + ` (${myPercentage(firstChoice, totale)}%)` ;
   }
   function setSecondChoice() {
-    r.style.setProperty("--second-choice", myPercentage(secondChoice,totale) + "%");
+    r.style.setProperty(
+      "--second-choice",
+      myPercentage(secondChoice, totale) + "%"
+    ) ;
 
      secondN.textContent =
-       secondChoice + ` (${myPercentage(secondChoice, totale)}%)`;
+       secondChoice + ` (${myPercentage(secondChoice, totale)}%)` ;
   }
   function setThirdChoice() {
     rr.style.setProperty("--third-choice", myPercentage(thirdChoice,totale) + "%");
 
      thirdN.textContent =
-       thirdChoice + ` (${myPercentage(thirdChoice, totale)}%)`;
+       thirdChoice + ` (${myPercentage(thirdChoice, totale)}%)` ;
   }
 
   setFirstChoice();
