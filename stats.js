@@ -78,19 +78,33 @@ async function fire(annee) {
  
   function myPercentage(choice,total) {
     var percentageChoice = (choice * 100) / total;
+    // console.log(Math.round(percentageChoice));
     return Math.round(percentageChoice);
   
   }
   // console.log(myPercentage());
   // Create a function for getting a variable value
 
+  function setFirstChoice() {
+    r.style.setProperty(
+      "--first-choice",
+      (100 - myPercentage(secondChoice, totale) - myPercentage(thirdChoice,totale)) + "%"
+    );
+    // if(firstChoice != 0)
+      firstN.textContent = firstChoice;
+  }
   function setSecondChoice() {
     r.style.setProperty("--second-choice", myPercentage(secondChoice,totale) + "%");
+    // if (secondChoice != 0)
+     secondN.textContent = secondChoice;
   }
   function setThirdChoice() {
     rr.style.setProperty("--third-choice", myPercentage(thirdChoice,totale) + "%");
+    // if (thirdChoice != 0)
+     thirdN.textContent = thirdChoice;
   }
 
+  setFirstChoice();
   setSecondChoice();
   setThirdChoice();
   /* End affecting number of students who get their nth choice */

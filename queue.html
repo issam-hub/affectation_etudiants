@@ -15,19 +15,19 @@
       <form action="data_handling.php">
         <div class="inp">
           <label for="" class="ord">GL</label>
-          <input pattern="\d+" type="text" name="gl_limit" />
+          <input pattern="\d+" type="text" name="gl_limit" required />
         </div>
         <div class="inp">
           <label for="" class="ord">GI</label>
-          <input pattern="\d+" type="text" name="gi_limit" />
+          <input pattern="\d+" type="text" name="gi_limit" required />
         </div>
         <div class="inp">
           <label for="" class="ord">RT</label>
-          <input pattern="\d+" type="text" name="rt_limit" />
+          <input pattern="\d+" type="text" name="rt_limit" required />
         </div>
         <div class="inp">
           <label for="" class="year">Year: </label>
-          <select name="annee" id="annees"></select>
+          <select name="annee" id="annees" required></select>
         </div>
         <button type="submit">submit</button>
       </form>

@@ -34,7 +34,7 @@ if (
     isset($_GET["file"]) &&
     isset($_GET["annee"])
 ) {
-    $file = fopen($_GET["file"], "r");
+    $file = fopen("data csv files/" . $_GET["file"], "r");
 
     $keys = [];
     for ($i = "A"; $i <= "V"; $i++) {
