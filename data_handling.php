@@ -111,31 +111,6 @@ if (
 }
 /*----------------End Send number of enrolled in speciality students --------------*/
 
-
-/*----------------Start Sending first choice (no longer needed) --------------*/
-require "db_connection.php";
-function send_queue($name, $attribute)
-{
-    global $db, $annee;
-    $queue = [];
-    $res = $db->query("SELECT matricule, nom_prenom, mgc, $attribute FROM " . TABLE_NAME . "_$annee" . " WHERE choisit=1 AND $attribute=1 ORDER BY mgc DESC;");
-    $temp = [];
-    while ($temp = $res->fetch_assoc()) {
-        array_push($queue, $temp);
-    }
-
-    if (isset($_GET[$name])) {
-        echo json_encode($queue);
-    }
-}
-
-send_queue("initial_gl", "ordre_gl");
-
-send_queue("initial_gi", "ordre_gi");
-
-send_queue("initial_rt", "ordre_rt");
-/*----------------End Sending first choice--------------*/
-
 /*----------------Start Affectation Handling--------------*/
 
 function affectation($annee)
@@ -228,36 +203,6 @@ if (
     header("Location: statique.html");
 }
 /*----------------End Affectation Handling--------------*/
-
-/*----------------Start Sending Final Speciality lists (no longer needed)--------------*/
-if (isset($_GET["ordre_gl"])) {
-    foreach ($specs["ordre_gl"] as $key => $student) {
-        $student = array_flip($student);
-        $specs["ordre_gl"][$key] = $student;
-    }
-    echo json_encode($specs["ordre_gl"]);
-    exit();
-}
-
-if (isset($_GET["ordre_gi"])) {
-    foreach ($specs["ordre_gi"] as $key => $student) {
-        $student = array_flip($student);
-        $specs["ordre_gi"][$key] = $student;
-    }
-    echo json_encode($specs["ordre_gi"]);
-    exit();
-}
-
-if (isset($_GET["ordre_rt"])) {
-    foreach ($specs["ordre_rt"] as $key => $student) {
-        $student = array_flip($student);
-        $specs["ordre_rt"][$key] = $student;
-    }
-    echo json_encode($specs["ordre_rt"]);
-    exit();
-}
-/*----------------End Sending Final Speciality lists--------------*/
-
 
 /*----------------Start Send statistics --------------*/
 if (
