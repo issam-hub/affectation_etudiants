@@ -41,8 +41,7 @@ html {
 }
 
 form {
-   outline: 4px solid #2e1760;
-   outline-style: dashed;
+   outline: 2px solid #2e1760;
    background-color: #5e3fa1;
    text-align: center;
    height: 40vh;
@@ -97,4 +96,9 @@ form button {
    border: none;
    cursor: pointer;
    font-family: "Lato", sans-serif;
+}
+
+p#err {
+   color: #ff0280;
+   font-weight: bold;
 }
