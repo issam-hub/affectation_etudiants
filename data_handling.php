@@ -29,6 +29,7 @@ const START = 15;
  * (matricule, nom_prenom, mgc, ordre_gl, ordre_gi, ordre_rt, choisit) E15, B15, Q15, R15, S15, T15, U15, V15
  */
 
+require_once "db_connection.php";
 
 if (
     isset($_GET["file"]) &&
