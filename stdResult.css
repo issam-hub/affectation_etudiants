@@ -1,0 +1,23 @@
+/* start general rules */
+body {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-family: "Lato", sans-serif;
+}
+html {
+   scroll-behavior: smooth;
+}
+/* end general rules */
+
+/* start header */
+.header {
+   /* padding-top & padding-bottom */
+   padding-block: 10px;
+   background-color: #171738;
+   text-align: center;
+}
+.header img {
+   height: 50px;
+   width: 50px;
+}

@@ -250,3 +250,27 @@ html {
    text-align: center;
    color: white;
 }
+
+.choix3 {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   translate: 0 90%;
+   height: fit-content;
+}
+
+.choix3 .file {
+   background-color: #171738;
+}
+
+.uuu3 {
+   /* position: absolute; */
+   /* top: 13%; */
+   translate: 12% -850%;
+   align-self: center;
+   color: rgb(190, 189, 189);
+}
+
+.choix3 .c22 {
+   translate: 0 -67%;
+}
