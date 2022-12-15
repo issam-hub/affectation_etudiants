@@ -30,16 +30,59 @@ async function fire(annee) {
   let json = await re.json();
   console.log(json);
   let table = document.querySelector("table");
-  table.innerHTML = `
+  let gl = document.querySelector("#gl");
+  let gi = document.querySelector("#gi");
+  let rt = document.querySelector("#rt");
+  gl.innerHTML = `
       <tr>
-        <th style="color: white; height: 45px">Order</th>
-        <th style="color: white; height: 45px">Full Name</th>
+         <th style="color: white; padding-block: 10px; font-size: 1.1rem; font-style: normal;" colspan="2">GL
+         </th>
+      </tr>
+      <tr>
+         <th class="gl_order" style="color: white; height: 45px">Order</th>
+         <th class="gl_name" style="color: white; height: 45px">Full Name</th>
       </tr>
     `;
+  gi.innerHTML = `
+      <tr>
+         <th style="color: white; padding-block: 10px; font-size: 1.1rem; font-style: normal;" colspan="2">GI
+         </th>
+      </tr>
+      <tr>
+         <th class="gl_order" style="color: white; height: 45px">Order</th>
+         <th class="gl_name" style="color: white; height: 45px">Full Name</th>
+      </tr>
+    `;
+  rt.innerHTML = `
+      <tr>
+         <th style="color: white; padding-block: 10px; font-size: 1.1rem; font-style: normal;" colspan="2">RT
+         </th>
+      </tr>
+      <tr>
+         <th class="gl_order" style="color: white; height: 45px">Order</th>
+         <th class="gl_name" style="color: white; height: 45px">Full Name</th>
+      </tr>
+    `;
+
   let i = 0;
-  for (row of json) {
-   if()
-   table.innerHTML += `
+  for (row of json[0]) {
+    gl.innerHTML += `
+         <tr>
+            <td>${++i}</td>
+            <td>${row["nom_prenom"]}</td>
+         </tr>`;
+  }
+  i = 0;
+  for (row of json[1]) {
+    gi.innerHTML += `
+         <tr>
+            <td>${++i}</td>
+            <td>${row["nom_prenom"]}</td>
+         </tr>`;
+  }
+  i = 0;
+  for (row of json[2]) {
+    rt.innerHTML += `
          <tr>
             <td>${++i}</td>
             <td>${row["nom_prenom"]}</td>

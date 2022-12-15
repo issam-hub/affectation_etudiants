@@ -51,6 +51,7 @@ html {
 
 .tab table{
    width: 200px;
+   height: fit-content;
 }
 th {
    width: 850px;

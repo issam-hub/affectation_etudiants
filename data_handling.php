@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+const TABLE_NAME = "etudiant";
 
 spl_autoload_register(function () {
     require_once "classes.php";
@@ -10,7 +11,7 @@ spl_autoload_register(function () {
 
 if (isset($_GET["annees_list"])) {
     require_once "db_connection.php";
-    $res = $db->query("SELECT annee FROM nombre_places ORDER BY  SUBSTRING(annee,6) DESC");
+    $res = $db->query("SELECT annee FROM nombre_places WHERE gl>0 OR gi>0 OR rt>0 ORDER BY  SUBSTRING(annee,6) DESC");
     // $count = [];
     while (($count[] = $res->fetch_assoc())) {
     }
@@ -20,6 +21,39 @@ if (isset($_GET["annees_list"])) {
 }
 
 /*----------------End Send list of archived data years --------------*/
+
+/*----------------Start Affectation list by speciality--------------*/
+
+if (
+    isset($_GET["gl"]) &&
+    isset($_GET["gi"]) &&
+    isset($_GET["rt"]) &&
+    isset($_GET["annee"])
+) {
+    require_once "db_connection.php";
+    $annee = $_GET["annee"];
+    affectation($annee);
+    $res = $db->query("SELECT nom_prenom FROM " . TABLE_NAME . "_$annee" . " WHERE voeu_affecte='gl'");
+    $gl = [];
+    while ($etudiant = $res->fetch_assoc()) {
+        $gl[] = $etudiant;
+    }
+    $res = $db->query("SELECT nom_prenom FROM " . TABLE_NAME . "_$annee" . " WHERE voeu_affecte='gi'");
+    $gi = [];
+    while ($etudiant = $res->fetch_assoc()) {
+        $gi[] = $etudiant;
+    }
+    $res = $db->query("SELECT nom_prenom FROM " . TABLE_NAME . "_$annee" . " WHERE voeu_affecte='rt'");
+    $rt = [];
+    while ($etudiant = $res->fetch_assoc()) {
+        $rt[] = $etudiant;
+    }
+
+    echo json_encode([$gl, $gi, $rt]);
+    exit();
+}
+
+/*----------------End Affectation list by speciality--------------*/
 
 session_start();
 const ACCOUNT_ERR_MSG = "NOT_CONNECTED";
@@ -34,7 +68,7 @@ header("cache-control: no-cache, must-revalidate");
 
 $statementsValues = [];
 $annee = "2022_2023";
-const TABLE_NAME = "etudiant";
+
 /*----------------Start Load Data From CSV File into DB--------------*/
 const MAX_ROW_LEN = 10000;
 const START = 15;
@@ -115,9 +149,10 @@ if (
 
 /*----------------Start Affectation Handling--------------*/
 
+require_once "db_connection.php";
 function affectation($annee)
 {
-    require_once "db_connection.php";
+    // define("TABLE_NAME", "etudiant");
     global $db;
     $db->query("UPDATE " . TABLE_NAME . "_$annee" . " SET satisfaction='non satisfait', voeu_affecte=NULL");
 
@@ -252,35 +287,3 @@ if (
     exit();
 }
 /*----------------End Send statistics --------------*/
-
-/*----------------Start Affectation list by speciality--------------*/
-
-if (
-    isset($_GET["gl"]) &&
-    isset($_GET["gi"]) &&
-    isset($_GET["rt"]) &&
-    isset($_GET["annee"])
-) {
-    $annee = $_GET["annee"];
-    affectation($annee);
-    $res = $db->query("SELECT nom_prenom FROM " . TABLE_NAME . "_$annee" . " WHERE voeu_affecte='gl'");
-    $gl = [];
-    while($etudiant = $res->fetch_assoc()){
-        $gl[] = $etudiant;
-    }
-    $res = $db->query("SELECT nom_prenom FROM " . TABLE_NAME . "_$annee" . " WHERE voeu_affecte='gi'");
-    $gi = [];
-    while($etudiant = $res->fetch_assoc()){
-        $gi[] = $etudiant;
-    }
-    $res = $db->query("SELECT nom_prenom FROM " . TABLE_NAME . "_$annee" . " WHERE voeu_affecte='rt'");
-    $rt = [];
-    while($etudiant = $res->fetch_assoc()){
-        $rt[] = $etudiant;
-    }
-
-    echo json_encode([$gl, $gi, $rt]);
-    exit();
-}
-
-/*----------------End Affectation list by speciality--------------*/
