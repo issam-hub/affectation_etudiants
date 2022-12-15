@@ -21,3 +21,46 @@ html {
    height: 50px;
    width: 50px;
 }
+
+.title {
+   text-align: center;
+   margin-block: 40px 50px;
+}
+
+.title h1 {
+   font-size: 2.4rem;
+}
+.title p {
+   font-style: italic;
+   color: #aaa7a7;
+}
+
+.tab {
+   padding: 1px;
+   width: 850px;
+   position: relative;
+   margin: 25px 100px;
+   left: 150px;
+}
+th {
+   width: 850px;
+   border-bottom: 2px solid #2e1760;
+   border-top: 2px solid #2e1760;
+   border-right: 2px solid #171738;
+   border-left: 2px solid #171738;
+   text-align: center;
+   background-color: #2e1760;
+   font-style: italic;
+}
+td {
+   width: 850px;
+   border-bottom: 2px solid #dff3e4;
+   border-right: 2px solid rgb(180, 173, 173);
+   border-left: 2px solid rgb(180, 173, 173);
+   text-align: center;
+   padding-top: 7px;
+   padding-bottom: 7px;
+}
+td:hover {
+   background-color: rgb(231, 219, 219);
+}
