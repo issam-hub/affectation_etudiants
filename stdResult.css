@@ -4,6 +4,7 @@ body {
    padding: 0;
    box-sizing: border-box;
    font-family: "Lato", sans-serif;
+   overflow-x: hidden;
 }
 html {
    scroll-behavior: smooth;
@@ -38,9 +39,18 @@ html {
 .tab {
    padding: 1px;
    width: 850px;
-   position: relative;
+   /* position: relative;
    margin: 25px 100px;
-   left: 150px;
+   left: 150px; */
+   width: 100%;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   gap: 20px;
+}
+
+.tab table{
+   width: 200px;
 }
 th {
    width: 850px;

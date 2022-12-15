@@ -6,6 +6,21 @@ spl_autoload_register(function () {
     require_once "classes.php";
 });
 
+/*----------------Start Send list of archived data years --------------*/
+
+if (isset($_GET["annees_list"])) {
+    require_once "db_connection.php";
+    $res = $db->query("SELECT annee FROM nombre_places ORDER BY  SUBSTRING(annee,6) DESC");
+    // $count = [];
+    while (($count[] = $res->fetch_assoc())) {
+    }
+    array_pop($count);
+    echo json_encode($count);
+    exit();
+}
+
+/*----------------End Send list of archived data years --------------*/
+
 session_start();
 const ACCOUNT_ERR_MSG = "NOT_CONNECTED";
 
@@ -75,20 +90,6 @@ if (
     exit();
 }
 require_once "db_connection.php";
-/*----------------Start Send list of archived data years --------------*/
-
-if (isset($_GET["annees_list"])) {
-    require_once "db_connection.php";
-    $res = $db->query("SELECT annee FROM nombre_places ORDER BY  SUBSTRING(annee,6) DESC");
-    // $count = [];
-    while (($count[] = $res->fetch_assoc())) {
-    }
-    array_pop($count);
-    echo json_encode($count);
-    exit();
-}
-
-/*----------------End Send list of archived data years --------------*/
 
 /*----------------Start Send number of enrolled in speciality students --------------*/
 if (
@@ -251,3 +252,35 @@ if (
     exit();
 }
 /*----------------End Send statistics --------------*/
+
+/*----------------Start Affectation list by speciality--------------*/
+
+if (
+    isset($_GET["gl"]) &&
+    isset($_GET["gi"]) &&
+    isset($_GET["rt"]) &&
+    isset($_GET["annee"])
+) {
+    $annee = $_GET["annee"];
+    affectation($annee);
+    $res = $db->query("SELECT nom_prenom FROM " . TABLE_NAME . "_$annee" . " WHERE voeu_affecte='gl'");
+    $gl = [];
+    while($etudiant = $res->fetch_assoc()){
+        $gl[] = $etudiant;
+    }
+    $res = $db->query("SELECT nom_prenom FROM " . TABLE_NAME . "_$annee" . " WHERE voeu_affecte='gi'");
+    $gi = [];
+    while($etudiant = $res->fetch_assoc()){
+        $gi[] = $etudiant;
+    }
+    $res = $db->query("SELECT nom_prenom FROM " . TABLE_NAME . "_$annee" . " WHERE voeu_affecte='rt'");
+    $rt = [];
+    while($etudiant = $res->fetch_assoc()){
+        $rt[] = $etudiant;
+    }
+
+    echo json_encode([$gl, $gi, $rt]);
+    exit();
+}
+
+/*----------------End Affectation list by speciality--------------*/
