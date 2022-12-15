@@ -49,8 +49,8 @@ html {
    gap: 20px;
 }
 
-.tab table{
-   width: 200px;
+.tab table {
+   width: 250px;
    height: fit-content;
 }
 th {
@@ -69,8 +69,8 @@ td {
    border-right: 2px solid rgb(180, 173, 173);
    border-left: 2px solid rgb(180, 173, 173);
    text-align: center;
-   padding-top: 7px;
-   padding-bottom: 7px;
+   padding-top: 10px;
+   padding-bottom: 10px;
 }
 td:hover {
    background-color: rgb(231, 219, 219);
