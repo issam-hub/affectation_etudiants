@@ -32,7 +32,7 @@ if (
 ) {
     require_once "db_connection.php";
     $annee = $_GET["annee"];
-    affectation($annee);
+    // affectation($annee);
     $res = $db->query("SELECT nom_prenom FROM " . TABLE_NAME . "_$annee" . " WHERE voeu_affecte='gl'");
     $gl = [];
     while ($etudiant = $res->fetch_assoc()) {
