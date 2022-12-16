@@ -155,10 +155,11 @@ h3 {
    color: #2e1760;
    text-align: center;
    margin: 10px;
+   margin-bottom: 10px;
 }
 
 .container-h3 {
-   margin-bottom: 50px;
+   margin-bottom: 30px;
 }
 .chart-container {
    color: white;
