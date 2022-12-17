@@ -1,221 +1,224 @@
 /* start general rules */
 body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Lato", sans-serif;
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-family: "Lato", sans-serif;
 }
 html {
-  scroll-behavior: smooth;
+   scroll-behavior: smooth;
 }
 /* end general rules */
 
 /* start header */
 .header {
-  /* padding-top & padding-bottom */
-  padding-block: 10px;
-  background-color: #171738;
-  text-align: center;
+   /* padding-top & padding-bottom */
+   padding-block: 10px;
+   background-color: #171738;
+   text-align: center;
 }
 .header img {
-  height: 50px;
-  width: 50px;
+   height: 50px;
+   width: 50px;
 }
 
 .div1 {
-  margin-top: 10px;
-  margin-left: 10px;
+   margin-top: 10px;
+   margin-left: 10px;
 }
 .title {
-  text-align: center;
-  margin-block: 40px 50px;
+   text-align: center;
+   margin-block: 40px 50px;
 }
 
 .title h1 {
-  font-size: 2.4rem;
+   font-size: 2.4rem;
 }
 .title p {
-  font-style: italic;
-  color: #aaa7a7;
+   font-style: italic;
+   color: #aaa7a7;
 }
 
 form {
-  background-color: #2e1760;
-  text-align: center;
-  height: 70vh;
-  width: 400px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding-block: 50px;
-  color: white;
-  border-radius: 10px;
-  margin: 0 auto;
+   background-color: #2e1760;
+   text-align: center;
+   height: 70vh;
+   width: 400px;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   align-items: center;
+   padding-block: 50px;
+   color: white;
+   border-radius: 10px;
+   margin: 0 auto;
 }
 
 form label {
-  font-weight: bold;
+   font-weight: bold;
 }
 
 form .info {
-  width: calc(100% - 65px);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+   width: calc(100% - 65px);
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
 }
 form label {
-  font-size: 1.1rem;
+   font-size: 1.1rem;
 }
-form input[type="text"] {
-  padding-block: 10px;
-  padding-inline: 15px 0;
-  border-radius: 20px;
-  border: none;
-  width: 230px;
-  font-size: 1rem;
-  font-family: "Lato", sans-serif;
+form input[type="text"],
+form input[type="password"] {
+   padding-block: 10px;
+   padding-inline: 15px 0;
+   border-radius: 20px;
+   border: none;
+   width: 230px;
+   font-size: 1rem;
+   font-family: "Lato", sans-serif;
 }
-form input[type="text"]::placeholder {
-  color: #aaa7a7b2;
+form input[type="text"]::placeholder,
+form input[type="password"]::placeholder {
+   color: #aaa7a7b2;
 }
 form input[type="text"]:focus,
+form input[type="password"]:focus,
 form input[type="number"]:focus {
-  outline: none;
+   outline: none;
 }
 
 form button {
-  padding-block: 15px;
-  font-size: 1.2rem;
-  padding-inline: 35px;
-  border-radius: 30px;
-  font-weight: bold;
-  color: white;
-  background-color: #171738;
-  border: none;
-  cursor: pointer;
-  font-family: "Lato", sans-serif;
+   padding-block: 15px;
+   font-size: 1.2rem;
+   padding-inline: 35px;
+   border-radius: 30px;
+   font-weight: bold;
+   color: white;
+   background-color: #171738;
+   border: none;
+   cursor: pointer;
+   font-family: "Lato", sans-serif;
 }
 
 form ul {
-  list-style-type: none;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-  text-align: center;
+   list-style-type: none;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   align-items: flex-start;
+   text-align: center;
 }
 
 form select {
-  background-color: #171738;
-  border: 0;
-  color: white;
-  font-size: 1rem;
-  padding-block: 2px;
-  border-radius: 5px;
-  margin-top: 10px;
-  width: 50px;
+   background-color: #171738;
+   border: 0;
+   color: white;
+   font-size: 1rem;
+   padding-block: 2px;
+   border-radius: 5px;
+   margin-top: 10px;
+   width: 50px;
 }
 
 form select:focus {
-  outline: none;
+   outline: none;
 }
 
 .seperator {
-  position: relative;
+   position: relative;
 }
 .seperator::before,
 .seperator::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  height: 2px;
-  width: 20px;
-  background-color: white;
+   content: "";
+   position: absolute;
+   top: 50%;
+   height: 2px;
+   width: 20px;
+   background-color: white;
 }
 .seperator::before {
-  left: -30px;
+   left: -30px;
 }
 .seperator::after {
-  right: -30px;
+   right: -30px;
 }
 
 .choixs {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
 }
 
 .choix {
-  display: flex;
-  flex-direction: column;
+   display: flex;
+   flex-direction: column;
 }
 
 .popUp {
-  z-index: 100;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  translate: -50% -50%;
-  height: 300px;
-  width: 500px;
-  background-color: #171738;
-  border-radius: 15px;
-  box-shadow: 0 0 0 1000px rgba(25, 25, 25, 0.529);
+   z-index: 100;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   translate: -50% -50%;
+   height: 300px;
+   width: 500px;
+   background-color: #171738;
+   border-radius: 15px;
+   box-shadow: 0 0 0 1000px rgba(25, 25, 25, 0.529);
 }
 
 @keyframes pop {
-  0% {
-    translate: -50% -80%;
-    opacity: 0;
-  }
-  100% {
-    translate: -50% -50%;
-    opacity: 1;
-  }
+   0% {
+      translate: -50% -80%;
+      opacity: 0;
+   }
+   100% {
+      translate: -50% -50%;
+      opacity: 1;
+   }
 }
 
 .popUp .exit {
-  width: 100%;
-  border-bottom: 1px solid rgb(127 102 145);
-  text-align: end;
+   width: 100%;
+   border-bottom: 1px solid rgb(127 102 145);
+   text-align: end;
 }
 .exit img {
-  height: 40px;
-  width: 40px;
-  cursor: pointer;
+   height: 40px;
+   width: 40px;
+   cursor: pointer;
 }
 .popUp .ctnt {
-  position: relative;
-  height: calc(100% - 100px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+   position: relative;
+   height: calc(100% - 100px);
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
 }
 .popUp .ctnt p {
-  /* position: absolute;
+   /* position: absolute;
    top: 50%;
    left: 50%;
    translate: -50% -50%; */
-  /* color: green; */
-  font-size: 1.2rem;
-  text-align: center;
-  line-height: 1.5;
-  margin-bottom: 10px;
+   /* color: green; */
+   font-size: 1.2rem;
+   text-align: center;
+   line-height: 1.5;
+   margin-bottom: 10px;
 }
 .popUp .ctnt ol {
-  color: white;
+   color: white;
 }
 
 .firstTime {
-  color: yellowgreen;
+   color: yellowgreen;
 }
 
 .already {
-  color: rgb(247, 254, 33);
+   color: rgb(247, 254, 33);
 }
 
 pre:contains("hello") {
-  color: red;
+   color: red;
 }
