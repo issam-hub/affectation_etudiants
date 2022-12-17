@@ -11,7 +11,7 @@ spl_autoload_register(function () {
 
 if (isset($_GET["annees_list"])) {
     require_once "db_connection.php";
-    $res = $db->query("SELECT annee FROM nombre_places WHERE gl>0 OR gi>0 OR rt>0 ORDER BY  SUBSTRING(annee,6) DESC");
+    $res = $db->query("SELECT annee FROM nombre_places ORDER BY  SUBSTRING(annee,6) DESC");
     // $count = [];
     while (($count[] = $res->fetch_assoc())) {
     }
